@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+    <name>Save and Stay</name>
+    <id>save_and_stay_ocmod</id>
+    <version>v1.2 save_and_stay_ocmod</version>
+    <author>ocextensions.co.uk for cancer research</author>
+    <link>mailto:support@ocextensions.co.uk</link>
+    <code>save_and_stay_ocmod</code>
+    <file path="admin/controller/catalog/product.php">
+        <operation>                 
+            <search><![CDATA[public function autocomplete()]]></search>
+            <add position="before"><![CDATA[        
+       	public function updateStay() {
+			$this->load->language('catalog/product');
+		    $this->document->setTitle($this->language->get('heading_title'));
+		    $this->load->model('catalog/product');
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
+			$this->model_catalog_product->editProduct($this->request->get['product_id'], $this->request->post);
+			$this->session->data['success'] = $this->language->get('text_success');
+		
+			$url = '';
+        if (isset($this->request->get['product_id'])) {
+			$url .= '&product_id=' . $this->request->get['product_id'];
+		}
+            $this->response->redirect($this->url->link('catalog/product/edit', 'token=' . $this->session->data['token'] . $url, 'SSL'));
+		}
+		$this->getForm();
+	}]]></add>
+        </operation>
+        <operation>            
+            <search index="0"><![CDATA[$data['action']]]></search>
+            <add position="after" ><![CDATA[                        $data['action_stay'] = $this->url->link('catalog/product/add', 'token=' . $this->session->data['token'] . $url, 'SSL');]]>
+            </add>
+        </operation>
+        <operation>            
+            <search index="1"><![CDATA[$data['action']]]></search>
+            <add position="after" ><![CDATA[                        $data['action_stay'] = $this->url->link('catalog/product/updateStay', 'token=' . $this->session->data['token'] . '&product_id=' . $this->request->get['product_id'] . $url, 'SSL');]]>
+            </add>
+        </operation>
+        <operation>            
+            <search><![CDATA[catalog/product_form.tpl]]></search>
+            <add position="before"><![CDATA[        if (isset($this->session->data['success'])) {
+			$data['success'] = $this->session->data['success'];
+			unset($this->session->data['success']);
+		} else {
+			$data['success'] = '';
+		}]]>
+            </add>
+        </operation>
+    </file>
+    <file path="admin/view/template/catalog/product_form.tpl">
+        <operation>                 
+            <search><![CDATA[<div class="panel panel-default">]]>  </search>
+            <add position="replace"><![CDATA[      <?php if ($success) { ?>
+    <div class="alert alert-success"><i class="fa fa-check-circle"></i> <?php echo $success; ?>
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    <?php } ?>]]>
+            </add>
+        </operation>
+        <operation>                 
+            <search><![CDATA[<ul class="nav nav-tabs">]]>  </search>
+            <add position="replace"><![CDATA[<ul class="nav nav-tabs" id="myTab">]]>
+            </add>
+        </operation>
+        <operation>                 
+            <search><![CDATA[<div class="pull-right">]]>  </search>
+            <add position="after"><![CDATA[        <button type="button" onclick="SaS();" type="button" form="form-product" data-toggle="tooltip" title="save and stay" class="btn btn-primary"><i class="fa fa-repeat"></i></button>]]>
+            </add>
+        </operation>
+       <operation>                 
+            <search><![CDATA[<?php echo $footer; ?>]]></search>
+            <add position="before"><![CDATA[ 
+<script type="text/javascript"><!--
+$(document).ready(function() {
+if (sessionStorage['index_p']) {
+var index_p = sessionStorage['index_p'];
+       } else {
+var index_p = 0;
+       }
+$('#myTab li:eq(' + index_p + ') a').tab('show');
+sessionStorage['index_p'] = 0;
+});  
+function SaS() { 
+   sessionStorage['index_p'] = $(".nav-tabs .active").index();
+   $('#form-product').attr('action', '<?php echo (htmlspecialchars_decode($action_stay)); ?>');
+   $('#form-product').submit();
+   e.preventDefault();
+};
+//--></script> ]]>
+            </add>
+        </operation>
+    </file>
+</modification>
