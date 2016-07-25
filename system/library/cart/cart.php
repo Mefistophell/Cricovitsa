@@ -59,6 +59,9 @@ class Cart {
 									$option_price += $option_value_query->row['price'];
 								} elseif ($option_value_query->row['price_prefix'] == '-') {
 									$option_price -= $option_value_query->row['price'];
+								} elseif ($option_value_query->row['price_prefix'] == '=') {
+                                    $prefix = '=';
+									$option_price += $option_value_query->row['price'];
 								}
 
 								if ($option_value_query->row['points_prefix'] == '+') {
@@ -104,7 +107,10 @@ class Cart {
 										$option_price += $option_value_query->row['price'];
 									} elseif ($option_value_query->row['price_prefix'] == '-') {
 										$option_price -= $option_value_query->row['price'];
-									}
+									} elseif ($option_value_query->row['price_prefix'] == '=') {
+                                        $prefix = '=';
+                                        $option_price += $option_value_query->row['price'];
+                                    }
 
 									if ($option_value_query->row['points_prefix'] == '+') {
 										$option_points += $option_value_query->row['points'];
@@ -234,6 +240,10 @@ class Cart {
 				} else {
 					$recurring = false;
 				}
+                
+                if(isset($prefix) && $prefix === '=') {
+                    $price = 0;
+                }
 
 				$product_data[] = array(
 					'cart_id'         => $cart['cart_id'],
