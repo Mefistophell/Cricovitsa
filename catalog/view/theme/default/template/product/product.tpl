@@ -33,19 +33,11 @@
             <?php } ?>
           </ul>
           <?php } ?>
-          <ul class="nav nav-tabs">
-            <li class="active"><a href="#tab-description" data-toggle="tab"><?php echo $tab_description; ?></a></li>
+          
+          
+            <?php echo $description; ?>
             <?php if ($attribute_groups) { ?>
-            <li><a href="#tab-specification" data-toggle="tab"><?php echo $tab_attribute; ?></a></li>
-            <?php } ?>
-            <?php if ($review_status) { ?>
-            <li><a href="#tab-review" data-toggle="tab"><?php echo $tab_review; ?></a></li>
-            <?php } ?>
-          </ul>
-          <div class="tab-content">
-            <div class="tab-pane active" id="tab-description"><?php echo $description; ?></div>
-            <?php if ($attribute_groups) { ?>
-            <div class="tab-pane" id="tab-specification">
+           
               <table class="table table-bordered">
                 <?php foreach ($attribute_groups as $attribute_group) { ?>
                 <thead>
@@ -63,10 +55,10 @@
                 </tbody>
                 <?php } ?>
               </table>
-            </div>
+            
             <?php } ?>
             <?php if ($review_status) { ?>
-            <div class="tab-pane" id="tab-review">
+            
               <form class="form-horizontal" id="form-review">
                 <div id="review"></div>
                 <h2><?php echo $text_write; ?></h2>
@@ -109,9 +101,9 @@
                 <?php echo $text_login; ?>
                 <?php } ?>
               </form>
-            </div>
+          
             <?php } ?>
-          </div>
+          
         </div>
         <?php if ($column_left || $column_right) { ?>
         <?php $class = 'col-sm-6'; ?>
@@ -120,6 +112,10 @@
         <?php } ?>
         <div class="<?php echo $class; ?>">
           <div class="btn-group">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab-original" data-toggle="tab"><?php echo $tab_description; ?></a></li>
+                <li><a href="#tab-print" data-toggle="tab"><?php echo $tab_attribute; ?></a></li>
+            </ul>
             <button type="button" data-toggle="tooltip" class="btn btn-default" title="<?php echo $button_wishlist; ?>" onclick="wishlist.add('<?php echo $product_id; ?>');"><i class="fa fa-heart"></i></button>
             <button type="button" data-toggle="tooltip" class="btn btn-default" title="<?php echo $button_compare; ?>" onclick="compare.add('<?php echo $product_id; ?>');"><i class="fa fa-exchange"></i></button>
           </div>
@@ -163,7 +159,15 @@
             <?php } ?>
           </ul>
           <?php } ?>
-          <div id="product">
+          <br />
+              <button type="button" id="button-cart" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary btn-lg btn-block"><?php echo $button_cart; ?></button>
+            
+          <!-- begin -->
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab-original">Original</div>
+            <div class="tab-pane" id="tab-print">
+          
+        <div id="product">
             <?php if ($options) { ?>
             <hr>
             <h3><?php echo $text_option; ?></h3>
@@ -308,13 +312,14 @@
               <label class="control-label" for="input-quantity"><?php echo $entry_qty; ?></label>
               <input type="text" name="quantity" value="<?php echo $minimum; ?>" size="2" id="input-quantity" class="form-control" />
               <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
-              <br />
-              <button type="button" id="button-cart" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary btn-lg btn-block"><?php echo $button_cart; ?></button>
-            </div>
+              </div>
             <?php if ($minimum > 1) { ?>
             <div class="alert alert-info"><i class="fa fa-info-circle"></i> <?php echo $text_minimum; ?></div>
             <?php } ?>
           </div>
+                 </div>
+        </div>
+          <!-- end -->
           <?php if ($review_status) { ?>
           <div class="rating">
             <p>
