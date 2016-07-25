@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+    <name>Print</name>
+    <version>0.1</version>
+    <author>Simon Bran</author>
+    <link>8s.in.ua</link>
+    
+    <file path="catalog/view/theme/*/template/product/product.tpl">  
+        <operation>
+            <search index="0"><![CDATA[$('select').bind('change', function() { recalculateprice(); });]]></search>
+            <add position="replace"><![CDATA[
+    $('select').bind('change', function() { 
+        recalculateprice();
+        if(this.id == 'ddd-1') {
+            var size = $(this).children('option:selected').text();
+            if(size.indexOf('Large') + 1) {
+                $('.print-thumb').animate({width:'328px','top':'83','left':'206'});
+            } else if(size.indexOf('Medium') + 1) {
+                $('.print-thumb').animate({width:'228px','top':'133','left':'256'});
+            } else if(size.indexOf('Small') + 1) {
+                $('.print-thumb').animate({width:'128px','top':'183','left':'306'});
+            } 
+        } else if(this.id == 'ddd-2') { 
+            var size = $(this).children('option:selected').text();
+            var canvas = $('select#ddd').children('option:selected').text();
+            if(size.indexOf('Black') + 1) {
+                if(canvas.indexOf('Canvas') + 1) {
+                    $('.print-thumb').css({border: '0px solid #000'});
+                    $('.print-thumb').animate({borderRightWidth: '10px',borderBottomWidth: '10px'});
+                } else {
+                    $('.print-thumb').css({border: '0px solid #000'});
+                    $('.print-thumb').animate({borderWidth: '10px'});
+                }
+            } else if(size.indexOf('White') + 1) {
+                if(canvas.indexOf('Canvas') + 1) {
+                    $('.print-thumb').css({border: '0px solid #fff'});
+                    $('.print-thumb').animate({borderRightWidth: '10px',borderBottomWidth: '10px'});
+                } else {
+                    $('.print-thumb').css({border: '0px solid #fff'});
+                    $('.print-thumb').animate({borderWidth: '10px'});
+                }
+            }
+        }
+    });
+            ]]></add>
+        </operation> 
+        <operation>
+            <search index="4"><![CDATA[recalculateprice();]]></search>
+            <add position="after"><![CDATA[
+        $('.print').hide();
+
+        $('a[href="#tab-print"]').on('click', function() { 
+            recalculateprice(); 
+            $('.thumbnails').hide();
+            $('.print').show();
+        });
+            $('a[href="#tab-original"]').on('click', function() { 
+                $('input:checked,option:selected').removeAttr("checked").removeAttr("selected");
+                recalculateprice(); 
+                $('#ddd-1').children('option:not(:first)').remove();
+                $('.thumbnails').show();
+                $('.print').hide();
+                //animateMainPrice(<?php echo (float)$price_value; ?>);
+        });
+            ]]></add>
+        </operation>
+        <operation>
+            <search index="0"><![CDATA[$('.thumbnails').magnificPopup({]]></search>
+            <add position="before" offset="1"><![CDATA[
+               
+            $('a[href="#tab-print"]').bind('click', function() { recalculateprice(); });
+                $('a[href="#tab-original"]').bind('click', function() { 
+                    //$('input:checked,option:selected').removeAttr("checked").removeAttr("selected");
+                    //recalculateprice(); 
+                    animateMainPrice(<?php echo (float)$price_value; ?>);
+            });
+
+            ]]></add>
+        </operation>
+        <operation>
+            <search index="0"><![CDATA[<?php echo $description; ?>]]></search>
+            <add position="before"><![CDATA[
+            <div class="print">
+                <img src="http://dfcdths9j2gip.cloudfront.net/images/room/view_in_room_couch_plant.jpg">
+                <?php if ($thumb) { ?>
+                  <img class="print-thumb" src="<?php echo $thumb; ?>" style="position: absolute; top: 133px; left: 256px;" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" />
+                <?php } ?>
+            </div>
+            ]]></add>
+        </operation>
+    </file> 
+ </modification>
+      
