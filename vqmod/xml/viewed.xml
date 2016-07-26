@@ -1,0 +1,24 @@
+<modification>
+    <id><![CDATA[Viewed]]></id>
+    <version><![CDATA[1.0]]></version>
+    <vqmver><![CDATA[2]]></vqmver>
+    <author><![CDATA[Simon Bran]]></author>
+    <file path="catalog/controller/product/product.php">
+        <operation>
+            <search><![CDATA[$data['points'] = $product_info['points'];]]></search>
+            <add position="after"><![CDATA[
+            $data['viewed'] = $product_info['viewed'];
+            ]]></add>
+        </operation>
+    </file>
+    <file path="catalog/view/theme/*/template/product/product.tpl">
+        <operation>
+            <search><![CDATA[<li><?php echo $text_stock; ?> <?php echo $stock; ?></li>]]></search>
+            <add position="after"><![CDATA[
+            <?php if ($viewed) { ?>
+                <li><i class="fa fa-eye" aria-hidden="true"></i> </span> <?php echo $viewed; ?></li>
+            <?php } ?>
+            ]]></add>
+        </operation>
+    </file>
+</modification>
