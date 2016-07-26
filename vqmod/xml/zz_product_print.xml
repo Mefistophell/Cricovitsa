@@ -26,16 +26,18 @@
             if(size.indexOf('Black') + 1) {
                 if(canvas.indexOf('Canvas') + 1) {
                     $('.print-thumb').css({border: '0px solid #000'});
-                    $('.print-thumb').animate({borderRightWidth: '10px',borderBottomWidth: '10px'});
+                    $('.print-thumb').css({'box-shadow': '6px 5px 6px 0px #000'});
                 } else {
+                    $('.print-thumb').css({'box-shadow': 'none'});
                     $('.print-thumb').css({border: '0px solid #000'});
                     $('.print-thumb').animate({borderWidth: '10px'});
                 }
             } else if(size.indexOf('White') + 1) {
                 if(canvas.indexOf('Canvas') + 1) {
                     $('.print-thumb').css({border: '0px solid #fff'});
-                    $('.print-thumb').animate({borderRightWidth: '10px',borderBottomWidth: '10px'});
+                    $('.print-thumb').css({'box-shadow': '6px 5px 6px 0px #fff'});
                 } else {
+                    $('.print-thumb').css({'box-shadow': 'none'});
                     $('.print-thumb').css({border: '0px solid #fff'});
                     $('.print-thumb').animate({borderWidth: '10px'});
                 }
