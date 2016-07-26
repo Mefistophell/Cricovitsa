@@ -20,6 +20,20 @@
       <h1><?php echo $heading_title; ?></h1>
       <p><?php echo $text_account_already; ?></p>
       <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" class="form-horizontal">
+          <fieldset>
+          <legend></legend>
+          <div class="form-group">
+            <label class="col-sm-2 control-label"><?php echo 'Type of account'; ?></label>
+            <div class="col-sm-10">
+              <label class="radio-inline">
+                <input type="radio" name="seller" value="0" checked="checked" />
+                <?php echo 'Collector'; ?></label>
+              <label class="radio-inline">
+                <input type="radio" name="seller" value="1" />
+                <?php echo 'Artist'; ?></label>
+            </div>
+          </div>
+        </fieldset>
         <fieldset id="account">
           <legend><?php echo $text_your_details; ?></legend>
           <div class="form-group required" style="display: <?php echo (count($customer_groups) > 1 ? 'block' : 'none'); ?>;">
