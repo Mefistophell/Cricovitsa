@@ -112,10 +112,12 @@
         <?php } ?>
         <div class="<?php echo $class; ?>">
           <div class="btn-group">
+            <?php if ($options) { ?>
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#tab-original" data-toggle="tab"><?php echo $tab_description; ?></a></li>
                 <li><a href="#tab-print" data-toggle="tab"><?php echo $tab_attribute; ?></a></li>
             </ul>
+            <?php } ?>
             <button type="button" data-toggle="tooltip" class="btn btn-default" title="<?php echo $button_wishlist; ?>" onclick="wishlist.add('<?php echo $product_id; ?>');"><i class="fa fa-heart"></i></button>
             <button type="button" data-toggle="tooltip" class="btn btn-default" title="<?php echo $button_compare; ?>" onclick="compare.add('<?php echo $product_id; ?>');"><i class="fa fa-exchange"></i></button>
           </div>
