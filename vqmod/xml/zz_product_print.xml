@@ -48,35 +48,38 @@
         </operation> 
         <operation>
             <search index="4"><![CDATA[recalculateprice();]]></search>
-            <add position="after"><![CDATA[
+            <add position="replace"><![CDATA[
+        //recalculateprice();
         $('.print').hide();
 
         $('a[href="#tab-print"]').on('click', function() { 
-            recalculateprice(); 
+            //recalculateprice(); 
+            $('.autocalc-product-price').html( price_format(0) );
             $('.thumbnails').hide();
             $('.print').show();
+            $('#button-cart').show();
         });
             $('a[href="#tab-original"]').on('click', function() { 
                 $('input:checked,option:selected').removeAttr("checked").removeAttr("selected");
-                recalculateprice(); 
+                //recalculateprice(); 
+                sold();
                 $('#ddd-1').children('option:not(:first)').remove();
                 $('.thumbnails').show();
                 $('.print').hide();
                 //animateMainPrice(<?php echo (float)$price_value; ?>);
         });
-            ]]></add>
-        </operation>
-        <operation>
-            <search index="0"><![CDATA[$('.thumbnails').magnificPopup({]]></search>
-            <add position="before" offset="1"><![CDATA[
-               
-            $('a[href="#tab-print"]').bind('click', function() { recalculateprice(); });
-                $('a[href="#tab-original"]').bind('click', function() { 
-                    //$('input:checked,option:selected').removeAttr("checked").removeAttr("selected");
-                    //recalculateprice(); 
-                    animateMainPrice(<?php echo (float)$price_value; ?>);
-            });
-
+        
+        function sold() {
+            var $qty = <?= $quantity ?>;
+            if($qty == '0') {
+                $('.autocalc-product-price').html( 'This artwork is sold' );
+                $('#button-cart').hide();
+            } else {
+                recalculateprice();
+            }
+        }
+        
+        sold();
             ]]></add>
         </operation>
         <operation>
