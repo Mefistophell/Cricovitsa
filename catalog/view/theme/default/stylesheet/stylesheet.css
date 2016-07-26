@@ -755,3 +755,24 @@ h2.price {
     background-image: none;
     background-color: #df5c39;
 }
+
+
+/*ADD*/
+
+.sold {
+    position: absolute;
+    bottom: 40px;
+    right: 29px;
+    width: 40px;
+    height: 40px;
+    background: red;
+    border-radius: 50%;
+    color: #fff;
+    padding: 9px 2px;
+    font-size: 13px;
+    box-shadow: 2px 2px 1px 0px #fff
+}
+
+.product-thumb .image {
+    position: relative;
+}
