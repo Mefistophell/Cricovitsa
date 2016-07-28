@@ -20,6 +20,20 @@
             <add position="after"><![CDATA[        html += '      <option value="="> = </option>';]]></add>
         </operation> 
     </file> 
+    <file path="catalog/view/theme/default/template/account/catalog/product_form.tpl">
+        <operation>
+            <search index="0"><![CDATA[<option value="-">-</option>]]></search>
+            <add position="after" offset="1"><![CDATA[                      <?php if ($product_option_value['price_prefix'] == '=') { ?>
+                      <option value="=" selected="selected"> = </option>
+                      <?php } else { ?>
+                      <option value="="> = </option>
+                      <?php } ?>]]></add>
+        </operation> 
+        <operation>
+            <search index="0"><![CDATA[html += '    <option value="-">-</option>';]]></search>
+            <add position="after"><![CDATA[        html += '      <option value="="> = </option>';]]></add>
+        </operation> 
+    </file> 
     <file path="system/library/cart.php">  
         <operation>
             <search><![CDATA[$option_price -= $option_value_query->row['price'];]]></search>

@@ -14,6 +14,15 @@ class ControllerProductCategory extends Controller {
 		} else {
 			$filter = '';
 		}
+        
+        /**
+         * Filter Seller
+         */
+		if (isset($this->request->get['filter_seller_id'])) {
+			$filter_seller_id = $this->request->get['filter_seller_id'];
+		} else {
+			$filter_seller_id = '';
+		}
 
 		if (isset($this->request->get['sort'])) {
 			$sort = $this->request->get['sort'];
@@ -172,7 +181,8 @@ class ControllerProductCategory extends Controller {
 				'sort'               => $sort,
 				'order'              => $order,
 				'start'              => ($page - 1) * $limit,
-				'limit'              => $limit
+				'limit'              => $limit,
+                'filter_seller_id' => $filter_seller_id
 			);
 
 			$product_total = $this->model_catalog_product->getTotalProducts($filter_data);

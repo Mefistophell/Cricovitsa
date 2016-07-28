@@ -123,7 +123,7 @@
           </div>
           <h1><?php echo $heading_title; ?></h1>
           <ul class="list-unstyled">
-            <li><?php echo $text_sellername; ?> <?php echo $seller_name; ?></li>
+              <li><?php echo $text_sellername; ?> <a href="<?php echo $seller_href; ?>"><?php echo $seller_name; ?></a></li>
             <?php if ($manufacturer) { ?>
             <li><?php echo $text_manufacturer; ?> <a href="<?php echo $manufacturers; ?>"><?php echo $manufacturer; ?></a></li>
             <?php } ?>
@@ -166,7 +166,7 @@
             
           <!-- begin -->
         <div class="tab-content">
-            <div class="tab-pane active" id="tab-original">Original</div>
+            <div class="tab-pane active" id="tab-original"></div>
             <div class="tab-pane" id="tab-print">
           
         <div id="product">
@@ -311,8 +311,8 @@
             </div>
             <?php } ?>
             <div class="form-group">
-              <label class="control-label" for="input-quantity"><?php echo $entry_qty; ?></label>
-              <input type="text" name="quantity" value="<?php echo $minimum; ?>" size="2" id="input-quantity" class="form-control" />
+              <label class="control-label hidden" for="input-quantity"><?php echo $entry_qty; ?></label>
+              <input type="hidden" name="quantity" value="<?php echo $minimum?1:1; ?>" size="2" id="input-quantity" class="form-control" />
               <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
               </div>
             <?php if ($minimum > 1) { ?>
