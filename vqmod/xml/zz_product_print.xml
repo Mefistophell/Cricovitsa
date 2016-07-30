@@ -71,7 +71,7 @@
         
         function sold() {
             var $qty = <?= $quantity ?>;
-            if($qty == '0') {
+            if(Number($qty) <= 0) {
                 $('.autocalc-product-price').html( 'This artwork is sold' );
                 $('#button-cart').hide();
             } else {
