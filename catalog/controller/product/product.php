@@ -336,7 +336,7 @@ class ControllerProductProduct extends Controller {
       $data['seller_name'] = $seller_info['firstname'] . '&nbsp;' . $seller_info['lastname'];
       }
       
-      $data['seller_href'] = $this->url->link('product/category', 'filter_seller_id=' . $seller_id);
+      $data['seller_href'] = $this->url->link('product/author/info', 'author_id=' . $seller_id);
 
 			$discounts = $this->model_catalog_product->getProductDiscounts($this->request->get['product_id']);
 
