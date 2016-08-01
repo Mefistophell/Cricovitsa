@@ -192,7 +192,7 @@ div.required .control-label:before {
 #cart .dropdown-menu li p {
 	margin: 20px 0;
 }
-/* menu */
+/* menu 
 #menu {
 	background-color: #229ac8;
 	background-image: linear-gradient(to bottom, #23a1d1, #1f90bb);
@@ -206,7 +206,7 @@ div.required .control-label:before {
 	padding: 10px 15px 10px 15px;
 	min-height: 15px;
 	background-color: transparent;
-}
+}*/
 #menu .nav > li > a:hover, #menu .nav > li.open > a {
 	background-color: rgba(0, 0, 0, 0.1);
 }
