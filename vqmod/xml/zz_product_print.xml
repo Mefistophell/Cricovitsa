@@ -83,12 +83,12 @@
             ]]></add>
         </operation>
         <operation>
-            <search index="0"><![CDATA[<?php echo $description; ?>]]></search>
-            <add position="before"><![CDATA[
+            <search index="1"><![CDATA[<?php if ($column_left || $column_right) { ?>]]></search>
+            <add position="before" offset="1"><![CDATA[
             <div class="print">
-                <img src="http://dfcdths9j2gip.cloudfront.net/images/room/view_in_room_couch_plant.jpg">
+                <img class="print-layer" src="/image/layer.png">
                 <?php if ($thumb) { ?>
-                  <img class="print-thumb" src="<?php echo $thumb; ?>" style="position: absolute; top: 133px; left: 256px;" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" />
+                  <img class="print-thumb" src="<?php echo $thumb; ?>" title="<?php echo $heading_title; ?>" alt="<?php echo $heading_title; ?>" />
                 <?php } ?>
             </div>
             ]]></add>
