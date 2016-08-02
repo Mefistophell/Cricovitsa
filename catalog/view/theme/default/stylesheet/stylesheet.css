@@ -776,3 +776,46 @@ h2.price {
 .product-thumb .image {
     position: relative;
 }
+
+.right-box {
+    background: #fff;
+}
+.right-box>.btn-group {
+    display: block;
+}
+.right-box>.btn-group .nav>li {
+    width: 50%;
+    text-align: center;
+}
+.right-box .nav-tabs {
+    border-bottom: 5px solid #f8f8f8;
+    margin-bottom: 0;
+}
+.right-box .nav-tabs>li>a {
+      text-transform: none;
+}
+.right-box .nav-tabs>li>a, .right-box .nav-tabs>li>a:focus, .right-box .nav-tabs>li>a:hover { 
+    border:2px solid #fff;
+    border-radius: 0;
+    background: none;
+}
+.right-box .nav-tabs>li.active>a, .right-box .nav-tabs>li.active>a:focus, .right-box .nav-tabs>li.active>a:hover { 
+    border:2px solid #c6dded;
+    border-radius: 0;
+    color:#0070c0;
+}
+.right-box .nav-tabs>li>a {
+    margin: 0;
+}
+.right-box>.btn-group .nav>li:first-child {
+    border-right: 3px solid #f8f8f8;
+}
+
+.print-thumb {
+    position: absolute; 
+    top: 133px; 
+    left: 256px;
+}
+.print-layer {
+    width:1062px;
+}
