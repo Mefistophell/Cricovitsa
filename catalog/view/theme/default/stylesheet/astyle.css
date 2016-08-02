@@ -105,3 +105,22 @@ header ul.list-unstyled>li>a {
     background: none;
     border: none;
 }
+
+/*PRODUCT*/
+
+section {
+    background: #f8f8f8;
+}
+
+.thumbnail-pull {
+    width: 86%;
+    float: right;
+}
+.thumbnails .image-additional-pull {
+    margin-left: 10px;
+    float: left;
+}
+.thumbnails > li {
+    margin-left: 0px; 
+}
+
