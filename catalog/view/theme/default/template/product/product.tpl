@@ -56,7 +56,7 @@
                             <!-- <button type="button" data-toggle="tooltip" class="btn btn-default" title="<?php echo $button_wishlist; ?>" onclick="wishlist.add('<?php echo $product_id; ?>');"><i class="fa fa-heart"></i></button>
                             <button type="button" data-toggle="tooltip" class="btn btn-default" title="<?php echo $button_compare; ?>" onclick="compare.add('<?php echo $product_id; ?>');"><i class="fa fa-exchange"></i></button> -->
                         </div>
-                        <h1><?php echo $heading_title; ?></h1>
+                        <h2><?php echo $heading_title; ?></h2>
                         <ul class="list-unstyled">
                             <li><?php echo $text_sellername; ?> <a href="<?php echo $seller_href; ?>"><?php echo $seller_name; ?></a></li>
                             <?php if ($manufacturer) { ?>
