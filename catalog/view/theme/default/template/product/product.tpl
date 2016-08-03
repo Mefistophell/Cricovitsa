@@ -6,7 +6,7 @@
             <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
             <?php } ?>
         </ul>
-        <h1><?php echo $heading_title; ?></h1>
+        <h1><?php echo !empty($seller_id)?$seller_name . ', ' . $heading_title : $heading_title; ?></h1>
         <div class="row"><?php echo $column_left; ?>
             <?php if ($column_left && $column_right) { ?>
             <?php $class = 'col-sm-6'; ?>
@@ -56,49 +56,21 @@
                             <!-- <button type="button" data-toggle="tooltip" class="btn btn-default" title="<?php echo $button_wishlist; ?>" onclick="wishlist.add('<?php echo $product_id; ?>');"><i class="fa fa-heart"></i></button>
                             <button type="button" data-toggle="tooltip" class="btn btn-default" title="<?php echo $button_compare; ?>" onclick="compare.add('<?php echo $product_id; ?>');"><i class="fa fa-exchange"></i></button> -->
                         </div>
-                        <h2><?php echo $heading_title; ?></h2>
-                        <ul class="list-unstyled">
-                            <li><?php echo $text_sellername; ?> <a href="<?php echo $seller_href; ?>"><?php echo $seller_name; ?></a></li>
-                            <?php if ($manufacturer) { ?>
-                            <li><?php echo $text_manufacturer; ?> <a href="<?php echo $manufacturers; ?>"><?php echo $manufacturer; ?></a></li>
+                        <h2><?php echo !empty($seller_id)?$seller_name . ', ' . $heading_title : $heading_title; ?></h2>
+                        <div class="short_description">
+                            <?php echo $short_description; ?>
+                        </div>
+                        <div id="buy">
+                            <?php if ($price) { ?>
+                            <div class="price">
+                                Price: <span><?php echo $price; ?></span>
+                            </div>
                             <?php } ?>
-                            <li><?php echo $text_model; ?> <?php echo $model; ?></li>
-                            <?php if ($reward) { ?>
-                            <li><?php echo $text_reward; ?> <?php echo $reward; ?></li>
-                            <?php } ?>
-                            <li><?php echo $text_stock; ?> <?php echo $stock; ?></li>
-                        </ul>
-                        <?php if ($price) { ?>
-                        <ul class="list-unstyled">
-                            <?php if (!$special) { ?>
-                            <li>
-                                <h2><?php echo $price; ?></h2>
-                            </li>
-                            <?php } else { ?>
-                            <li><span style="text-decoration: line-through;"><?php echo $price; ?></span></li>
-                            <li>
-                                <h2><?php echo $special; ?></h2>
-                            </li>
-                            <?php } ?>
-                            <?php if ($tax) { ?>
-                            <li><?php echo $text_tax; ?> <?php echo $tax; ?></li>
-                            <?php } ?>
-                            <?php if ($points) { ?>
-                            <li><?php echo $text_points; ?> <?php echo $points; ?></li>
-                            <?php } ?>
-                            <?php if ($discounts) { ?>
-                            <li>
-                                <hr>
-                            </li>
-                            <?php foreach ($discounts as $discount) { ?>
-                            <li><?php echo $discount['quantity']; ?><?php echo $text_discount; ?><?php echo $discount['price']; ?></li>
-                            <?php } ?>
-                            <?php } ?>
-                        </ul>
-                        <?php } ?>
-                        <br />
-                        <button type="button" id="button-cart" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary btn-lg btn-block"><?php echo $button_cart; ?></button>
-
+                            <button type="button" id="button-cart" data-loading-text="<?php echo $text_loading; ?>"><?php echo $button_cart; ?></button>
+                        </div>
+                        <div class="viewed">
+                            <?php echo $viewed; ?> Views
+                        </div>
                         <!-- begin -->
                         <div class="tab-content">
                             <div class="tab-pane active" id="tab-original"></div>
@@ -257,24 +229,6 @@
                             </div>
                         </div>
                         <!-- end -->
-                        <?php if ($review_status) { ?>
-                        <div class="rating">
-                            <p>
-                                <?php for ($i = 1; $i <= 5; $i++) { ?>
-                                <?php if ($rating < $i) { ?>
-                                <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                <?php } else { ?>
-                                <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-                                <?php } ?>
-                                <?php } ?>
-                                <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;"><?php echo $reviews; ?></a> / <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;"><?php echo $text_write; ?></a></p>
-                            <hr>
-                            <!-- AddThis Button BEGIN -->
-                            <div class="addthis_toolbox addthis_default_style" data-url="<?php echo $share; ?>"><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a> <a class="addthis_button_tweet"></a> <a class="addthis_button_pinterest_pinit"></a> <a class="addthis_counter addthis_pill_style"></a></div>
-                            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-515eeaf54693130e"></script>
-                            <!-- AddThis Button END -->
-                        </div>
-                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -284,7 +238,10 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <?php echo $description; ?>
+            <div class="description">
+                <h2 class="title">Art description</h2>
+                <?php echo $description; ?>
+            </div>
             <?php if ($attribute_groups) { ?>
             <table class="table table-bordered">
                 <?php foreach ($attribute_groups as $attribute_group) { ?>
@@ -306,7 +263,23 @@
 
             <?php } ?>
             <?php if ($review_status) { ?>
-
+            <div class="rating">
+                <p>
+                    <?php for ($i = 1; $i <= 5; $i++) { ?>
+                    <?php if ($rating < $i) { ?>
+                    <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+                    <?php } else { ?>
+                    <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+                    <?php } ?>
+                    <?php } ?>
+                    <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;"><?php echo $reviews; ?></a> / <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;"><?php echo $text_write; ?></a></p>
+                <hr>
+                <!-- AddThis Button BEGIN -->
+                <div class="addthis_toolbox addthis_default_style" data-url="<?php echo $share; ?>"><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a> <a class="addthis_button_tweet"></a> <a class="addthis_button_pinterest_pinit"></a> <a class="addthis_counter addthis_pill_style"></a></div>
+                <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-515eeaf54693130e"></script>
+                <!-- AddThis Button END -->
+            </div>
+                   
             <form class="form-horizontal" id="form-review">
                 <div id="review"></div>
                 <h2><?php echo $text_write; ?></h2>
