@@ -272,6 +272,10 @@ class ControllerProductProduct extends Controller {
 			$data['reward'] = $product_info['reward'];
 			$data['points'] = $product_info['points'];
 			$data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
+			$description_clear = strip_tags(html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8'));
+			$description_short = rtrim(substr($description_clear, 0, 200), "!,.-");
+            $description_short = substr($description_short, 0, strrpos($description_short, ' '));
+			$data['short_description'] = $description_short."… ";
 
 			if ($product_info['quantity'] <= 0) {
 				$data['stock'] = $product_info['stock_status'];
@@ -337,6 +341,7 @@ class ControllerProductProduct extends Controller {
       }
       
       $data['seller_href'] = $this->url->link('product/author/info', 'author_id=' . $seller_id);
+      $data['seller_id'] = $seller_id;
 
 			$discounts = $this->model_catalog_product->getProductDiscounts($this->request->get['product_id']);
 
