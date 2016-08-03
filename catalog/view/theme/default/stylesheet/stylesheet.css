@@ -62,7 +62,8 @@ span.hidden-xs, span.hidden-sm, span.hidden-md, span.hidden-lg {
 }
 
 .nav-tabs {
-    margin-bottom: 15px;
+    border-bottom: 5px solid #f8f8f8;
+    margin-bottom: 0;
 }
 div.required .control-label:before {
     content: '* ';
@@ -315,7 +316,7 @@ div.required .control-label:before {
 }
 /* content */
 #content {
-    min-height: 600px;
+    /*min-height: 600px;*/
 }
 /* footer */
 footer {
@@ -754,101 +755,4 @@ h2.price {
 .btn-info:hover, .btn-info:active, .btn-info.active, .btn-info.disabled, .btn-info[disabled] {
     background-image: none;
     background-color: #df5c39;
-}
-
-
-/*ADD*/
-
-.sold {
-    position: absolute;
-    bottom: 40px;
-    right: 29px;
-    width: 40px;
-    height: 40px;
-    background: red;
-    border-radius: 50%;
-    color: #fff;
-    padding: 9px 2px;
-    font-size: 13px;
-    box-shadow: 2px 2px 1px 0px #fff
-}
-
-.product-thumb .image {
-    position: relative;
-}
-
-.right-box {
-    background: #fff;
-}
-.right-box>.btn-group {
-    display: block;
-}
-.right-box>.btn-group .nav>li {
-    width: 50%;
-    text-align: center;
-}
-.right-box .nav-tabs {
-    border-bottom: 5px solid #f8f8f8;
-    margin-bottom: 0;
-}
-.right-box .nav-tabs>li>a {
-    text-transform: none;
-}
-.right-box .nav-tabs>li>a, .right-box .nav-tabs>li>a:focus, .right-box .nav-tabs>li>a:hover { 
-    border:2px solid #fff;
-    border-radius: 0;
-    background: none;
-}
-.right-box .nav-tabs>li.active>a, .right-box .nav-tabs>li.active>a:focus, .right-box .nav-tabs>li.active>a:hover { 
-    border:2px solid #c6dded;
-    border-radius: 0;
-    color:#0070c0;
-}
-.right-box .nav-tabs>li>a {
-    margin: 0;
-}
-.right-box>.btn-group .nav>li:first-child {
-    border-right: 3px solid #f8f8f8;
-}
-
-.print-thumb {
-    position: absolute; 
-    top: 133px; 
-    left: 256px;
-}
-.print-layer {
-    width:1062px;
-}
-.breadcrumb-product li {
-    display: block;
-    float: left;
-    margin: 25px 0 0 0;
-    padding: 0 10px 0 10px;
-    border-right: 1px solid #000;
-    line-height: 1.071;
-    text-align: center;
-}
-.breadcrumb-product li:last-child {
-    border-right: 0;
-}
-.breadcrumb-product li:first-child {
-    padding: 0 10px 0 0;
-}
-.breadcrumb-product li a {
-    font-size: 14px;
-    font-family: Poppins Light;
-    color: rgb(33, 31, 32);
-}
-.breadcrumb-product {
-    padding: 0;
-    overflow: hidden;
-}
-h1 {
-  font-size: 28px;
-  font-family: Poppins Medium;
-  color: rgb(33, 31, 32);
-  text-transform: uppercase;
-  line-height: 1.145;
-  text-align: left;
-
 }
