@@ -80,14 +80,20 @@
                 <?php } ?>
               </div>
             </div>
-            <div class="tab-pane" id="tab-data">
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-parent"><?php echo $entry_parent; ?></label>
-                <div class="col-sm-10">
-                  <input type="text" name="path" value="<?php echo $path; ?>" placeholder="<?php echo $entry_parent; ?>" id="input-parent" class="form-control" />
-                  <input type="hidden" name="parent_id" value="<?php echo $parent_id; ?>" />
-                </div>
-              </div>
+            <div class="tab-pane" id="tab-data">                
+            <div class="form-group">
+               <label class="col-sm-2 control-label" for="input-category"><span data-toggle="tooltip" title="<?php echo $help_category; ?>"><?php echo $entry_category; ?></span></label>
+               <div class="col-sm-10">
+                  <input type="text" name="category" value="" placeholder="<?php echo $entry_category; ?>" id="input-category" class="form-control" />
+                 <div id="product-category" class="well well-sm" style="height: 150px; overflow: auto;">
+                    <?php foreach ($product_categories as $product_category) { ?>
+                    <div id="product-category<?php echo $product_category['category_id']; ?>"><i class="fa fa-minus-circle"></i> <?php echo $product_category['name']; ?>
+                      <input type="hidden" name="product_category[]" value="<?php echo $product_category['category_id']; ?>" />
+                    </div>
+                    <?php } ?>
+                  </div>
+               </div>
+            </div>     
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-filter"><span data-toggle="tooltip" title="<?php echo $help_filter; ?>"><?php echo $entry_filter; ?></span></label>
                 <div class="col-sm-10">
@@ -159,6 +165,24 @@
                       <?php } ?>
                       &nbsp; </label>
                   </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-level"><span data-toggle="tooltip" title="<?php echo $help_level; ?>"><?php echo $entry_level; ?></span></label>
+                <div class="col-sm-10">          
+                    <select name="level" id="input-level" class="form-control">
+                    <?php if ($level) { ?>
+                        <option value="0" <?php if ((int)$level === 0) { echo 'selected="selected"';} ?>><?php echo $level_category; ?></option>
+                        <option value="1" <?php if ((int)$level === 1) { echo 'selected="selected"';} ?>><?php echo $level_subject; ?></option>
+                        <option value="2" <?php if ((int)$level === 2) { echo 'selected="selected"';} ?>><?php echo $level_medium; ?></option>
+                        <option value="3" <?php if ((int)$level === 3) { echo 'selected="selected"';} ?>><?php echo $level_style; ?></option>
+                    <?php } else { ?>
+                        <option value="0" selected="selected"><?php echo $level_category; ?></option>
+                        <option value="1"><?php echo $level_subject; ?></option>
+                        <option value="2"><?php echo $level_medium; ?></option>
+                        <option value="3"><?php echo $level_style; ?></option>
+                    <?php } ?>
+                  </select>
                 </div>
               </div>
               <div class="form-group">
@@ -287,6 +311,61 @@ $('input[name=\'filter\']').autocomplete({
 	}
 });
 
+$('input[name=\'category\']').autocomplete({
+ 'source': function(request, response) {
+  $.ajax({
+   url: 'index.php?route=catalog/category/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
+   dataType: 'json',   
+   success: function(json) {
+    response($.map(json, function(item) {
+     return {
+      label: item['name'],
+      value: item['category_id']
+     }
+    }));
+   }
+  });
+ },
+ 'select': function(item) {
+  $('input[name=\'category\']').val('');
+
+
+// Category
+$('input[name=\'category\']').autocomplete({
+ 'source': function(request, response) {
+  $.ajax({
+   url: 'index.php?route=catalog/category/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
+   dataType: 'json',   
+   success: function(json) {
+    response($.map(json, function(item) {
+     return {
+      label: item['name'],
+      value: item['category_id']
+     }
+    }));
+   }
+  });
+ },
+ 'select': function(item) {
+  $('input[name=\'category\']').val('');
+  
+  $('#product-category' + item['value']).remove();
+  
+  $('#product-category').append('<div id="product-category' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="product_category[]" value="' + item['value'] + '" /></div>'); 
+ }
+});
+$('#product-category').delegate('.fa-minus-circle', 'click', function() {
+ $(this).parent().remove();
+});  
+  $('#product-category' + item['value']).remove();
+  
+  $('#product-category').append('<div id="product-category' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="product_category[]" value="' + item['value'] + '" /></div>'); 
+ }
+});
+$('#product-category').delegate('.fa-minus-circle', 'click', function() {
+ $(this).parent().remove();
+});
+  
 $('#category-filter').delegate('.fa-minus-circle', 'click', function() {
 	$(this).parent().remove();
 });
