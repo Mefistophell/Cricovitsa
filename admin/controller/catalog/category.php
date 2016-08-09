@@ -191,14 +191,17 @@ class ControllerCatalogCategory extends Controller {
 		$results = $this->model_catalog_category->getCategories($filter_data);
 
 		foreach ($results as $result) {
-			$data['categories'][] = array(
-				'category_id' => $result['category_id'],
-				'name'        => $result['name'],
-				'sort_order'  => $result['sort_order'],
-				'edit'        => $this->url->link('catalog/category/edit', 'token=' . $this->session->data['token'] . '&category_id=' . $result['category_id'] . $url, true),
-				'delete'      => $this->url->link('catalog/category/delete', 'token=' . $this->session->data['token'] . '&category_id=' . $result['category_id'] . $url, true)
-			);
-		}
+            
+            $multipleCategories = $this->model_catalog_category->getMultipleParentCategories($result['category_id']);
+            
+            $data['categories'][] = array(
+                'category_id' => $result['category_id'],
+                'name'        => $multipleCategories[0]['parentcategories'].$result['name'],
+                'sort_order'  => $result['sort_order'],
+                'edit'        => $this->url->link('catalog/category/edit', 'token=' . $this->session->data['token'] . '&category_id=' . $result['category_id'] . $url, 'SSL'),
+                'delete'      => $this->url->link('catalog/category/delete', 'token=' . $this->session->data['token'] . '&category_id=' . $result['category_id'] . $url, 'SSL')
+            );
+        }
 
 		$data['heading_title'] = $this->language->get('heading_title');
 
@@ -316,6 +319,42 @@ class ControllerCatalogCategory extends Controller {
 		$data['tab_general'] = $this->language->get('tab_general');
 		$data['tab_data'] = $this->language->get('tab_data');
 		$data['tab_design'] = $this->language->get('tab_design');
+        
+        $data['entry_category'] = $this->language->get('entry_category');
+        $data['help_category'] = $this->language->get('help_category');
+        
+        $data['entry_level'] = $this->language->get('entry_level');
+        $data['help_level'] = $this->language->get('help_level');
+        $data['level_category'] = $this->language->get('level_category');
+        $data['level_subject'] = $this->language->get('level_subject');
+        $data['level_medium'] = $this->language->get('level_medium');
+        $data['level_style'] = $this->language->get('level_style');
+        
+        if (isset($this->request->post['product_category'])) {
+            $categories = $this->request->post['product_category'];
+        } elseif (isset($this->request->get['category_id'])) {
+            $categories = $this->model_catalog_category->getParentCategories($this->request->get['category_id']);
+        } else {
+            $categories = array();
+        }
+              
+        $data['product_categories'] = array();
+        foreach ($categories as $category_id) {
+            $category_info = $this->model_catalog_category->getCategory($category_id);
+
+            if ($category_info) {
+                $data['product_categories'][] = array(
+                    'category_id' => $category_info['category_id'],
+                    'name' => ($category_info['path']) ? $category_info['path'] . ' &gt; ' . $category_info['name'] : $category_info['name']
+                );
+            }
+        }
+        
+        if (isset($this->error['level'])) {
+			$data['error_level'] = $this->error['level'];
+		} else {
+			$data['error_level'] = array();
+		}
 
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
@@ -399,6 +438,14 @@ class ControllerCatalogCategory extends Controller {
 			$data['path'] = $category_info['path'];
 		} else {
 			$data['path'] = '';
+		}
+        
+        if (isset($this->request->post['level'])) {
+			$data['level'] = $this->request->post['level'];
+		} elseif (!empty($category_info)) {
+			$data['level'] = $category_info['level'];
+		} else {
+			$data['level'] = '';
 		}
 
 		if (isset($this->request->post['parent_id'])) {
