@@ -43,3 +43,13 @@ $_['error_permission']       = 'Warning: You do not have permission to modify ca
 $_['error_name']             = 'Category Name must be between 2 and 255 characters!';
 $_['error_meta_title']       = 'Meta Title must be greater than 3 and less than 255 characters!';
 $_['error_keyword']          = 'SEO URL already in use!';
+
+$_['entry_category']         = 'Parent Categories';
+$_['help_category']          = '(Autocomplete)';
+
+$_['entry_level']         = 'Level';
+$_['level_category']      = 'Main category';
+$_['level_subject']       = 'Subject';
+$_['level_medium']        = 'Medium';
+$_['level_style']         = 'Style';
+$_['help_level']          = 'Level of Category';
