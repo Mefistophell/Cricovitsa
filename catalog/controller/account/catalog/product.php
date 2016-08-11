@@ -1,5 +1,7 @@
 <?php
 class ControllerAccountCatalogProduct extends Controller {
+    
+    const LEVELS = 4;
 	private $error = array();
 
 	public function index() {
@@ -636,7 +638,7 @@ class ControllerAccountCatalogProduct extends Controller {
 		$data['entry_minimum'] = $this->language->get('entry_minimum');
 		$data['entry_shipping'] = $this->language->get('entry_shipping');
 		$data['entry_date_available'] = $this->language->get('entry_date_available');
-    $data['entry_date_ende'] = $this->language->get('entry_date_ende');
+        $data['entry_date_end'] = $this->language->get('entry_date_end');
 		$data['entry_quantity'] = $this->language->get('entry_quantity');
 		$data['entry_stock_status'] = $this->language->get('entry_stock_status');
 		$data['entry_price'] = $this->language->get('entry_price');
@@ -1100,6 +1102,17 @@ class ControllerAccountCatalogProduct extends Controller {
 		} else {
 			$categories = array();
 		}
+        
+        $levels = self::LEVELS;
+        $data['levels'] = $levels;
+        
+        for($i = 0; $i < $levels; $i++) {
+            $data['categories'][$i] = $this->model_account_catalog_category->getCategoriesLevel($i);
+        }
+        
+        if(isset($this->request->get['product_id'])) {
+            $data['product_id'] = $this->request->get['product_id'];
+        }
 
 		$data['product_categories'] = array();
 
@@ -1383,8 +1396,8 @@ class ControllerAccountCatalogProduct extends Controller {
 
 		$data['layouts'] = $this->model_account_catalog_layout->getLayouts();
 
-		$data['column_left'] = $this->load->controller('common/column_left');
-		$data['column_right'] = $this->load->controller('common/column_right');
+		$data['column_left'] = NULL;
+		$data['column_right'] = NULL;
 		$data['content_top'] = $this->load->controller('common/content_top');
 		$data['content_bottom'] = $this->load->controller('common/content_bottom');
 		$data['footer'] = $this->load->controller('common/footer');
