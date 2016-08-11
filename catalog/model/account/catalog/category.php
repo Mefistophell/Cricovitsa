@@ -245,6 +245,21 @@ class ModelAccountCatalogCategory extends Model {
 		return $query->rows;
 	}
 
+    public function getCategoriesLevel($level) {
+		//$sql = "SELECT DISTINCT(cd1.name) AS name, c1.parent_id, cp.category_id AS category_id, c1.sort_order, GROUP_CONCAT(ptc.product_id SEPARATOR '-') AS product_id FROM " . DB_PREFIX . "category_path cp LEFT JOIN " . DB_PREFIX . "category c1 ON (cp.category_id = c1.category_id) LEFT JOIN " . DB_PREFIX . "category c2 ON (cp.path_id = c2.category_id) LEFT JOIN " . DB_PREFIX . "category_description cd1 ON (cp.path_id = cd1.category_id) LEFT JOIN " . DB_PREFIX . "product_to_category ptc ON (cp.category_id = ptc.category_id)  LEFT JOIN " . DB_PREFIX . "category_description cd2 ON (cp.category_id = cd2.category_id) WHERE cp.level = " . $level . " AND cd1.language_id = '" . (int)$this->config->get('config_language_id') . "' AND cd2.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+		$sql = "SELECT DISTINCT(cd1.name) AS name, c1.category_id AS category_id, GROUP_CONCAT(ptc.product_id SEPARATOR '-') AS product_id FROM " . DB_PREFIX . "category_path cp LEFT JOIN " . DB_PREFIX . "category c1 ON (cp.category_id = c1.category_id) LEFT JOIN " . DB_PREFIX . "category_description cd1 ON (cp.path_id = cd1.category_id) LEFT JOIN " . DB_PREFIX . "product_to_category ptc ON (cp.category_id = ptc.category_id) WHERE cp.level = " . $level . " AND cd1.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+
+		$sql .= " GROUP BY name";
+		
+        $sql .= " ORDER BY sort_order";
+
+        $sql .= " ASC";
+
+		$query = $this->db->query($sql);
+
+		return $query->rows;
+	}
+    
 	public function getCategoryDescriptions($category_id) {
 		$category_description_data = array();
 
