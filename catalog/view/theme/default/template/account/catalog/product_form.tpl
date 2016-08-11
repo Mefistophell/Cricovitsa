@@ -120,6 +120,12 @@
                 </div>
               </div>
               <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-price-profit"><?php echo $entry_price_profit; ?></label>
+                <div class="col-sm-10">
+                    <input type="text" disabled="disabled" name="price-profit" value=""  id="input-price-profit" class="form-control" />
+                </div>
+              </div>
+              <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-date-available"><?php echo $entry_date_available; ?></label>
                 <div class="col-sm-3">
                   <div class="input-group date">
@@ -1279,5 +1285,14 @@ $('.datetime').datetimepicker({
   <script type="text/javascript"><!--
 $('#language a:first').tab('show');
 $('#option a:first').tab('show');
+
+$('#input-price').on('change', function(){
+    var val = $(this).val();
+    val = (val/100) * 70;
+    $('#input-price-profit').val(val);
+});
+
+$('#input-price-profit').val(($('#input-price').val()/100) * 70);
+
 //--></script></div> 
 <?php echo $footer; ?> 
