@@ -9,6 +9,10 @@ class ModelCatalogAuthor extends Model {
 	public function getAuthors($data = array()) {
 		if ($data) {
 			$sql = "SELECT * FROM " . DB_PREFIX . "seller m";
+            
+            if (isset($data['author_name'])) {
+				$sql .= " WHERE firstname LIKE '%" . $data['author_name'] . "%' OR lastname LIKE '%" . $data['author_name'] . "%' ";
+			} 
 
 			$sort_data = array(
 				'firstname',
