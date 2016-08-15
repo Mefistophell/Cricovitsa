@@ -29,8 +29,12 @@ class ControllerProductAuthor extends Controller {
 		);
 
 		$data['categories'] = array();
+        
+        if (isset($this->request->get['name'])) {
+			$filter['author_name'] = $this->request->get['name'];
+		}
 
-		$results = $this->model_catalog_author->getAuthors();
+		$results = $this->model_catalog_author->getAuthors($filter);
 
 		foreach ($results as $result) {
 			if (is_numeric(utf8_substr($result['firstname'], 0, 1))) {
