@@ -50,13 +50,11 @@
                         <h1><a href="<?php echo $home; ?>"><?php echo $name; ?></a></h1>
                         <?php } ?>
                     </div>
-                    <div class="col-sm-6">
-                        <div id="search" class="input-group">
-                            <?php echo $search; ?>
-                        </div>
+                    <div class="col-sm-7">
+                        <?php echo $search; ?> 
                     </div>
-                    <div class="col-sm-3 login">
-                        <a href="">Register</a> | <a href="">Sing in</a>
+                    <div class="col-sm-2 login">
+                        <a href="<?php echo $register; ?>"><?php echo $text_register; ?></a> | <a href="<?php echo $login; ?>"><?php echo $text_login; ?></a>
                         <?php echo $cart; ?>
                     </div>
                 </div>
