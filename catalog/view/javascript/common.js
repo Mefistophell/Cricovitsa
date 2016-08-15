@@ -52,13 +52,21 @@ $(document).ready(function() {
 
 	/* Search */
 	$('#search input[name=\'search\']').parent().find('button').on('click', function() {
-		var url = $('base').attr('href') + 'index.php?route=product/search';
-
+                
+                var cat = $('.search-category').val();
 		var value = $('header input[name=\'search\']').val();
-
-		if (value) {
+                
+                if (cat == 0) {
+                    var url = $('base').attr('href') + 'index.php?route=product/search';
+                    if (value) {
 			url += '&search=' + encodeURIComponent(value);
-		}
+                    }
+                } else {
+                    var url = $('base').attr('href') + 'index.php?route=product/author';
+                    if (value) {
+			url += '&name=' + encodeURIComponent(value);
+                    }
+                }
 
 		location = url;
 	});
