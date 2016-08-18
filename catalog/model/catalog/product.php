@@ -213,9 +213,11 @@ class ModelCatalogProduct extends Model {
     public function hasProduct($product_id, $path) {
      
         foreach ($path as $value) {
-            $parent = $this->db->query("SELECT COUNT(*) AS total FROM `oc_product_to_category` WHERE `category_id` = ". $value ." AND `product_id` = " . (int)$product_id)->row;
-            if((int)$parent['total'] === 0) {
-                return 0;
+            if((int)$value !== 0) {
+                $parent = $this->db->query("SELECT COUNT(*) AS total FROM `oc_product_to_category` WHERE `category_id` = ". $value ." AND `product_id` = " . (int)$product_id)->row;
+                if((int)$parent['total'] === 0) {
+                    return 0;
+                }
             }
         }
         
