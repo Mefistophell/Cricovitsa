@@ -220,7 +220,7 @@ div.required .control-label:before {
 #menu .dropdown-inner ul {
     display: table-cell;
 }
-#menu .dropdown-inner a {
+#menu .dropdown-inner a, .category-level {
     min-width: 160px;
     display: block;
     padding: 3px 20px;
