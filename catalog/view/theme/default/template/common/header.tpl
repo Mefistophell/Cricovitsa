@@ -71,17 +71,17 @@
                             </div>
                             <div class="collapse navbar-collapse navbar-ex1-collapse">
                                 <ul class="nav navbar-nav">
-                                    <?php foreach ($categories as $category) { ?>
+                                    <?php $cc = 1; foreach ($categories as $category) { ?>
                                     <?php if ($category['children']) { ?>
                                     <li class="dropdown"><a href="<?php echo $category['href']; ?>" class="dropdown-toggle" data-toggle="dropdown"><?php echo $category['name']; ?></a>
                                         <div class="dropdown-menu">
                                             <div class="dropdown-inner">
                                                 <?php foreach (array_chunk($category['children'], ceil(count($category['children']) / $category['column'])) as $children) { ?>
-                                                <ul class="list-unstyled">
-                                                    <?php foreach ($children as $child) { ?>
-                                                    <li><a href="<?php echo $child['href']; ?>"><?php echo $child['name']; ?></a></li>
-                                                    <?php } ?>
-                                                </ul>
+                                                <div class="c<?php echo $cc; ?>">
+                                                    <?php $le = 1; foreach ($children as $child) { if($le>5) break; ?>
+                                                    <ul class="list-unstyled le<?php echo $le; ?>"></ul>
+                                                    <?php $le++; } ?>
+                                                </div>
                                                 <?php } ?>
                                             </div>
                                             <a href="<?php echo $category['href']; ?>" class="see-all"><?php echo $text_all; ?> <?php echo $category['name']; ?></a> </div>
@@ -89,17 +89,47 @@
                                     <?php } else { ?>
                                     <li><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a></li>
                                     <?php } ?>
-                                    <?php } ?>
+                                    <?php $cc++;} ?>
                                 </ul>
                             </div>
                         </nav>
-
                         <?php } ?>
                     </div>
                 </div>
             </div>
         </header>
 
+        <script>
+        <?php $c = 1; foreach ($categories as $category) { 
+            foreach (array_chunk($category['children'], ceil(count($category['children']) / $category['column'])) as $children) {
+                $l1 = $l2 = $l3 = 0;
+                foreach ($children as $child) { ?>
+                <?php 
+                    switch ($child['level']) {
+                    case 1: if ($l1 > 5) continue; ?>
+                        <?php if ($l1 == 0) { ?>
+                            $('.c<?php echo $c; ?> .le1').append('<li><b class="category-level">MEDIUM</b></li>');
+                        <?php } ?>
+                        $('.c<?php echo $c; ?> .le1').append('<li><a href=\'<?php echo $child["href"]; ?>\'><?php echo $child["name"]; ?></a></li>');
+                    <?php  $l1++;   break;
+                    case 2: if ($l2 > 5) continue; ?>
+                        <?php if ($l2 == 0) { ?>
+                            $('.c<?php echo $c; ?> .le2').append('<li><b class="category-level">STYLE</b></li>');
+                        <?php } ?>
+                        $('.c<?php echo $c; ?> .le2').append('<li><a href=\'<?php echo $child["href"]; ?>\'><?php echo $child["name"]; ?></a></li>');
+                    <?php  $l2++;  break;
+                    case 3: if ($l3 > 5) continue; ?>
+                        <?php if ($l3 == 0) { ?>
+                            $('.c<?php echo $c; ?> .le3').append('<li><b class="category-level">SUBJECT</b></li>');
+                        <?php } ?>
+                        $('.c<?php echo $c; ?> .le3').append('<li><a href=\'<?php echo $child["href"]; ?>\'><?php echo $child["name"]; ?></a></li>');
+                    <?php  $l3++;  break;
+                ?>
+                    <?php }  ?>
+                <?php } ?>
+            <?php } $c++;  ?>
+        <?php } ?>
+        </script>
 
 
 
