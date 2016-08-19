@@ -190,11 +190,13 @@
                         <option value="1" <?php if ((int)$level === 1) { echo 'selected="selected"';} ?>><?php echo $level_subject; ?></option>
                         <option value="2" <?php if ((int)$level === 2) { echo 'selected="selected"';} ?>><?php echo $level_medium; ?></option>
                         <option value="3" <?php if ((int)$level === 3) { echo 'selected="selected"';} ?>><?php echo $level_style; ?></option>
+                        <option value="4" <?php if ((int)$level === 4) { echo 'selected="selected"';} ?>><?php echo $level_price; ?></option>
                     <?php } else { ?>
                         <option value="0" selected="selected"><?php echo $level_category; ?></option>
                         <option value="1"><?php echo $level_subject; ?></option>
                         <option value="2"><?php echo $level_medium; ?></option>
                         <option value="3"><?php echo $level_style; ?></option>
+                        <option value="3"><?php echo $level_price; ?></option>
                     <?php } ?>
                   </select>
                 </div>
