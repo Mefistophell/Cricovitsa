@@ -331,6 +331,7 @@ class ControllerCatalogCategory extends Controller {
         $data['level_subject'] = $this->language->get('level_subject');
         $data['level_medium'] = $this->language->get('level_medium');
         $data['level_style'] = $this->language->get('level_style');
+        $data['level_price'] = $this->language->get('level_price');
         
         if (isset($this->request->post['product_category'])) {
             $categories = $this->request->post['product_category'];
