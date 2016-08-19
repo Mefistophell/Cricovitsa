@@ -303,6 +303,7 @@ class ControllerCatalogCategory extends Controller {
 		$data['entry_store'] = $this->language->get('entry_store');
 		$data['entry_image'] = $this->language->get('entry_image');
 		$data['entry_top'] = $this->language->get('entry_top');
+		$data['entry_popular'] = $this->language->get('entry_popular');
 		$data['entry_column'] = $this->language->get('entry_column');
 		$data['entry_sort_order'] = $this->language->get('entry_sort_order');
 		$data['entry_status'] = $this->language->get('entry_status');
@@ -311,6 +312,7 @@ class ControllerCatalogCategory extends Controller {
 		$data['help_filter'] = $this->language->get('help_filter');
 		$data['help_keyword'] = $this->language->get('help_keyword');
 		$data['help_top'] = $this->language->get('help_top');
+		$data['help_popular'] = $this->language->get('help_popular');
 		$data['help_column'] = $this->language->get('help_column');
 
 		$data['button_save'] = $this->language->get('button_save');
@@ -525,6 +527,14 @@ class ControllerCatalogCategory extends Controller {
 			$data['top'] = $category_info['top'];
 		} else {
 			$data['top'] = 0;
+		}
+        
+		if (isset($this->request->post['popular'])) {
+			$data['popular'] = $this->request->post['popular'];
+		} elseif (!empty($category_info)) {
+			$data['popular'] = $category_info['popular'];
+		} else {
+			$data['popular'] = 0;
 		}
 
 		if (isset($this->request->post['column'])) {
