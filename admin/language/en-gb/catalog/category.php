@@ -26,6 +26,7 @@ $_['entry_filter']           = 'Filters';
 $_['entry_store']            = 'Stores';
 $_['entry_image']            = 'Image';
 $_['entry_top']              = 'Top';
+$_['entry_popular']          = 'Popular';
 $_['entry_column']           = 'Columns';
 $_['entry_sort_order']       = 'Sort Order';
 $_['entry_status']           = 'Status';
