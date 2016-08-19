@@ -168,6 +168,20 @@
                 </div>
               </div>
               <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-popular"><span data-toggle="tooltip" title="<?php echo $help_popular; ?>"><?php echo $entry_popular; ?></span></label>
+                <div class="col-sm-10">
+                  <div class="checkbox">
+                    <label>
+                      <?php if ($popular) { ?>
+                      <input type="checkbox" name="popular" value="1" checked="checked" id="input-popular" />
+                      <?php } else { ?>
+                      <input type="checkbox" name="popular" value="1" id="input-popular" />
+                      <?php } ?>
+                      &nbsp; </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-level"><span data-toggle="tooltip" title="<?php echo $help_level; ?>"><?php echo $entry_level; ?></span></label>
                 <div class="col-sm-10">          
                     <select name="level" id="input-level" class="form-control">
