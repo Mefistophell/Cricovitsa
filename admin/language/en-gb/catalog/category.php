@@ -53,4 +53,5 @@ $_['level_category']      = 'Main category';
 $_['level_subject']       = 'Subject';
 $_['level_medium']        = 'Medium';
 $_['level_style']         = 'Style';
+$_['level_price']         = 'Price';
 $_['help_level']          = 'Level of Category';
