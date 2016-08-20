@@ -154,3 +154,14 @@
     <?php echo $column_right; ?></div>
 </div>
 <?php echo $footer; ?>
+<script>
+    $('input[name="filter[]"]').parents('.checkbox').each(function(index,el) {
+        var val = $(el).children().children('input').val();
+        var l = index + 7;
+        $(el).replaceWith('<input value="' + val + '" name="filter[]" type="checkbox" id="payt' + l + '"/><label for="payt' + l + '"></label>')
+    });
+    
+    
+    //$('input[name="filter[]"]').attr({'hidden':'hidden'});
+    
+</script>
