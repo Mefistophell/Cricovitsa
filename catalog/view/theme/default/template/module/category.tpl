@@ -76,12 +76,21 @@
         var path = t.children('option:selected').val();
         var current = window.location.href;
 
+        var filter = getUrlVars(current)["filter"];
+        
+        if (filter) {
+            cfilter = "&filter=" + filter;
+            current = current.replace(cfilter, '');
+        } else {
+            cfilter = '';
+        }
+        
         var cpath = getUrlVars(current)["path"];
         var cpath_array = cpath.split(/\s*_\s*/);
 
         if (l > 4) {
             if(path != 0) {
-                document.location.href = current + "_" + path;
+                document.location.href = current + "_" + path + cfilter;
             }
         }
         else {
@@ -105,7 +114,7 @@
             cpath_array = cpath_array.replace(/\__/gi, "_0_");
             cpath_array = cpath_array.replace('__', '_0_');
 
-            document.location.href = current + cpath_array;
+            document.location.href = current + cpath_array + cfilter;
         }
 
     }
