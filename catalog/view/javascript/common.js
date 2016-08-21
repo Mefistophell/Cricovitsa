@@ -51,10 +51,10 @@ $(document).ready(function() {
 	})
 
 	/* Search */
-	$('#search input[name=\'search\']').parent().find('button').on('click', function() {
+	function search_in() {
                 
-                var cat = $('.search-category').val();
-		var value = $('header input[name=\'search\']').val();
+                var cat = $('.search-category option:selected').val();
+		var value = $('input.form-search').val();
                 
                 if (cat == 0) {
                     var url = $('base').attr('href') + 'index.php?route=product/search';
@@ -69,11 +69,11 @@ $(document).ready(function() {
                 }
 
 		location = url;
-	});
+	};
 
-	$('#search input[name=\'search\']').on('keydown', function(e) {
+	$('input.form-search').on('keydown', function(e) {
 		if (e.keyCode == 13) {
-			$('header input[name=\'search\']').parent().find('button').trigger('click');
+			search_in();
 		}
 	});
 
