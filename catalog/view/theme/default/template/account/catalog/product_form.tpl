@@ -236,20 +236,8 @@
                     <?php } ?>
                   </div>
                 </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label" for="input-filter"><span data-toggle="tooltip" title="<?php echo $help_filter; ?>"><?php echo $entry_filter; ?></span></label>
-                <div class="col-sm-10">
-                  <input type="text" name="filter" value="" placeholder="<?php echo $entry_filter; ?>" id="input-filter" class="form-control" />
-                  <div id="product-filter" class="well well-sm" style="height: 150px; overflow: auto;">
-                    <?php foreach ($product_filters as $product_filter) { ?>
-                    <div id="product-filter<?php echo $product_filter['filter_id']; ?>"><i class="fa fa-minus-circle"></i> <?php echo $product_filter['name']; ?>
-                      <input type="hidden" name="product_filter[]" value="<?php echo $product_filter['filter_id']; ?>" />
-                    </div>
-                    <?php } ?>
-                  </div>
-                </div>
-              </div> -->
+              </div>-->
+              
               <div class="form-group">
                 <label class="col-sm-12"><span data-toggle="tooltip" title="<?php echo $help_category; ?>"><?php echo $entry_category; ?></span></label>
                 <div class="col-sm-12">
@@ -285,6 +273,21 @@
                 </div>
               </div>
             <input type="hidden" name="product_store[]" value="0">
+            
+            <div class="form-group">
+                <div class="col-sm-12">
+                <label class="control-label" for="input-filter"><span data-toggle="tooltip" title="<?php echo $help_filter; ?>"><?php echo $entry_filter; ?></span></label>
+                  <input type="text" name="filter" value="" placeholder="<?php echo $entry_filter; ?>" id="input-filter" class="form-control" />
+                  <div id="product-filter" class="well well-sm" style="height: 150px; overflow: auto;">
+                    <?php foreach ($product_filters as $product_filter) { ?>
+                    <div id="product-filter<?php echo $product_filter['filter_id']; ?>"><i class="fa fa-minus-circle"></i> <?php echo $product_filter['name']; ?>
+                      <input type="hidden" name="product_filter[]" value="<?php echo $product_filter['filter_id']; ?>" />
+                    </div>
+                    <?php } ?>
+                  </div>
+                </div>
+              </div>
+            
             </div>
             <div class="tab-pane" id="tab-attribute">
               <div class="table-responsive">
