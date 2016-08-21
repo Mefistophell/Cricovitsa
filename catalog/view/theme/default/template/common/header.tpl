@@ -21,8 +21,8 @@
         
         <!-- <script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,400i,300,700" rel="stylesheet" type="text/css" />
-        <link href="catalog/view/theme/default/stylesheet/stylesheet.css" rel="stylesheet"> -->
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,400i,300,700" rel="stylesheet" type="text/css" /> -->
+        <link href="catalog/view/theme/default/stylesheet/stylesheet.css" rel="stylesheet"> 
         <link href="catalog/view/theme/default/stylesheet/astyle.css" rel="stylesheet"> 
         
         <script src="catalog/view/theme/default/stylesheet/js/jquery-1.11.2.min.js"></script>
@@ -95,7 +95,7 @@
                                 <ul class="nav navbar-nav">
                                     <?php $cc = 1; foreach ($categories as $category) { ?>
                                     <?php if ($category['children']) { ?>
-                                    <li class="dropdown tabs"><a href="<?php echo $category['href']; ?>" class="dropdown-toggle"><?php echo $category['name']; ?></a>
+                                    <li class="dropdown"><a href="<?php echo $category['href']; ?>" class="dropdown-toggle"><?php echo $category['name']; ?></a>
                                         <div class="dropdown-menu">
                                             <div class="dropdown-inner">
                                                 <?php foreach (array_chunk($category['children'], ceil(count($category['children']) / $category['column'])) as $children) { ?>
