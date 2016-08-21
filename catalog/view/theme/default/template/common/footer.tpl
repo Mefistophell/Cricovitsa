@@ -49,19 +49,5 @@ Please donate to http://clerkscart.com
 //-->
 
 <!-- Theme created by Welford Media for OpenCart 2.0 www.welfordmedia.co.uk -->
-    <script src="catalog/view/theme/default/stylesheet/js/jquery-1.11.2.min.js"></script>
-    <script src="catalog/view/theme/default/stylesheet/js/PrefixFree.js"></script>
-    <script src="catalog/view/theme/default/stylesheet/js/bootstrap.js"></script>
-    <script src="catalog/view/theme/default/stylesheet/js/script.js"></script>
-    <script src="catalog/view/theme/default/stylesheet/js/jquery.formstyler.js"></script>
-    <script>
-        (function($) {
-            $(function() {
-
-                $('.styled').styler();
-
-            });
-        })(jQuery);
-
-    </script>
+    
 </body></html>
