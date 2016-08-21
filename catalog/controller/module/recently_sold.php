@@ -2,7 +2,7 @@
 class ControllerModuleRecentlySold extends Controller {
 	public function index($setting) {
         
-        if (!isset($this->request->get['main'])) {
+        if (isset($this->request->get['path']) && !isset($this->request->get['main'])) {
             return;
         }
         
@@ -87,6 +87,10 @@ class ControllerModuleRecentlySold extends Controller {
 					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'])
 				);
 			}
+            
+             if (!isset($this->request->get['path']) && !isset($this->request->get['main'])) {
+               return $this->load->view('module/recently_sold_main', $data);
+            }
 
 			return $this->load->view('module/recently_sold', $data);
 		}
