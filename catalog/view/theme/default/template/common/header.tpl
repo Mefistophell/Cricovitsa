@@ -21,9 +21,25 @@
         
         <!-- <script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,400i,300,700" rel="stylesheet" type="text/css" />  -->
-        <link href="catalog/view/theme/default/stylesheet/stylesheet.css" rel="stylesheet">
+        <link href="//fonts.googleapis.com/css?family=Open+Sans:400,400i,300,700" rel="stylesheet" type="text/css" />
+        <link href="catalog/view/theme/default/stylesheet/stylesheet.css" rel="stylesheet"> -->
         <link href="catalog/view/theme/default/stylesheet/astyle.css" rel="stylesheet"> 
+        
+        <script src="catalog/view/theme/default/stylesheet/js/jquery-1.11.2.min.js"></script>
+        <script src="catalog/view/theme/default/stylesheet/js/PrefixFree.js"></script>
+        <script src="catalog/view/theme/default/stylesheet/js/bootstrap.js"></script>
+        <script src="catalog/view/theme/default/stylesheet/js/script.js"></script>
+        <script src="catalog/view/theme/default/stylesheet/js/jquery.formstyler.js"></script>
+        <script>
+            (function($) {
+                $(function() {
+
+                    $('.styled').styler();
+
+                });
+            })(jQuery);
+
+        </script>
         
         <link type="text/css" rel="stylesheet" href="catalog/view/theme/default/stylesheet/css/bootstrap.css" />
         <link type="text/css" rel="stylesheet" href="catalog/view/theme/default/stylesheet/css/bootstrap-theme.css" />
