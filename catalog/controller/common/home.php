@@ -8,6 +8,22 @@ class ControllerCommonHome extends Controller {
 		if (isset($this->request->get['route'])) {
 			$this->document->addLink(HTTP_SERVER, 'canonical');
 		}
+        
+        $level = 0;
+        $limit = 4;
+        
+        $this->load->model('catalog/category');
+        
+        $categories = $this->model_catalog_category->getCategoriesByLevel($level, $limit);
+        
+        foreach ($categories as $category) {
+             $data['categories'][] = [
+                 'name' => $category['name'],
+                 'description' => $category['description'],
+                 'image' => $category['image'],
+                 'href' => $this->url->link('product/category', 'path=' . $category['path_id'])
+             ];
+        }
 
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['column_right'] = $this->load->controller('common/column_right');
