@@ -594,10 +594,16 @@ class ControllerProductProduct extends Controller {
 		$review_total = $this->model_catalog_review->getTotalReviewsByProductId($this->request->get['product_id']);
 
 		$results = $this->model_catalog_review->getReviewsByProductId($this->request->get['product_id'], ($page - 1) * 5, 5);
+        
+        $this->load->model('account/customer');
 
 		foreach ($results as $result) {
-			$data['reviews'][] = array(
+            
+            $customer = $this->model_account_customer->getCustomer($result['customer_id']);
+			
+            $data['reviews'][] = array(
 				'author'     => $result['author'],
+				'customer'     => $customer,
 				'text'       => nl2br($result['text']),
 				'rating'     => (int)$result['rating'],
 				'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added']))
