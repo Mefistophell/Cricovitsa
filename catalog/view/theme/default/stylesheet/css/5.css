@@ -1,0 +1,488 @@
+h2{
+    text-transform: uppercase;
+    margin-left: 10px;
+}
+main>section:first-child{
+    background-color: #f8f8f8;
+    padding: 20px 0;
+}
+.breadcrump-product{
+    margin: 0;
+    padding: 0;
+}
+.breadcrump-product>li{
+    display: inline-block;
+    border-right: 1px solid black;
+    list-style: none;
+    padding: 0 10px;
+    margin-left: -4px;
+}
+.breadcrump-product>li:first-child{
+    padding-left: 0px;
+    margin-left: 0px;
+}
+.breadcrump-product>li:last-child{
+    border: 0;
+}
+.breadcrump-product + h1{
+    text-transform: uppercase;
+}
+
+
+
+/*
+.thumnails{
+    padding: 0;
+    background-size: cover;
+}
+.thumnails>li{
+    list-style: none;
+}
+.thumnails>li>img{
+    width: 120px;
+    height: 120px;
+    background-size: cover;
+    text-align: center;
+}
+.thumnails>li{
+    margin-bottom: 4px;
+}
+.thumnails>li:last-child{
+    margin-bottom: 0;
+}
+*/
+.prints{
+    background: url(../img/background.jpg) 100% 100% no-repeat;
+    height: 850px;
+    background-size: cover;
+
+}
+.original{
+    text-align: center;
+}
+
+.original>.print{
+    margin-top: 50px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.prints_img > .print{
+    height: 540px;
+    margin-left: 37px;
+    margin-right: 87px;
+}
+.prints_img > .print > img{
+    width: 200px;
+    height: 200px;
+    position: relative;
+    top: calc(51% - 200px/2);
+    /top: 50%;
+    /left: 50%;
+    left: calc(51% - 200px/2);
+    padding: 5px;
+}
+.print>img{
+    width: auto;
+    height: 100%;
+}
+
+
+.button-group{
+    padding: 0px;
+    margin: 0;
+}
+.right-box{
+    margin-top: 50px;
+}
+.right-box>div:first-child{
+    padding: 0px;
+}
+.button-group>div{
+    list-style: none;
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+    padding: 10px 0;
+    background-color: white;
+    float: left;
+    font-family: "PoppinsMedium";
+}
+
+.button-group>div:first-child{
+    border-right: 2px solid #f8f8f8;
+    border-bottom: 4px solid #f8f8f8;
+}
+.button-group>div:last-child{
+    border-left: 2px solid #f8f8f8;
+    border-bottom: 4px solid #f8f8f8;
+}
+.button-group>div:first-child>a{
+    padding: 9px 63px;
+}
+.button-group>div:last-child>a{
+    padding: 9px 71px;
+}
+.button-group>div:first-child>a:hover{
+    border: 1px solid #337ab7;
+    text-decoration: none;
+}
+.button-group>div:last-child>a:hover{
+    border: 1px solid #337ab7;
+    text-decoration: none;
+}
+.right-box>div.col-md-12{
+    background-color: white;
+}
+.right-box>div:nth-child(2){
+    padding: 15px;
+}
+.right-box>div:nth-child(2)>h3{
+    margin: 5px 0;
+    text-transform: capitalize;
+    font-size: 130%;
+}
+.short_description{
+    padding: 0 10px 0 15px;
+}
+.buy{
+    background-color: white;
+    padding: 20px 0;
+}
+.buy>div:first-child{
+    padding-left: 15px;
+    font-size: 120%;
+}
+.price{
+    font-family: 'PoppinsMedium';
+    font-size: 110% !important;
+}
+#button-cart{
+    padding: 2px 40px;
+    border: 1px solid lawngreen;
+    background-color: white;
+    margin-top: -2px;
+}
+#button-cart:hover{
+    background-color: lawngreen;
+}
+.viewed{
+    margin: 40px auto 0 auto;
+    width: 95%;
+    background-color: #f8f8f8;
+    text-align: center;
+    padding: 5px 0;
+}
+
+
+.section2>div>div>div.col-md-8{
+    margin-bottom: 40px;
+    margin-left: 10px;
+}
+.section2>div>div>div.col-md-8>h2{
+    margin-left: 0;
+}
+.section3{
+    background-color: #f8f8f8;
+}
+.more_by,
+.might_like{
+    margin-bottom: 30px;
+}
+.more_by>div,
+.might_like>div{
+    padding: 0 10px;
+}
+.more_by>div>img,
+.might_like>div>img{
+    width: 100%;
+}
+.more_by>div>p,
+.might_like>div>p{
+    text-align: inherit;
+}
+.section4{
+    padding-bottom: 40px;
+}
+.comment>div>img{
+    width: 110px;
+    margin-top: 20px;
+    -webkit-box-shadow: 0px 0px 13px 0px rgba(140,140,140,1);
+    -moz-box-shadow: 0px 0px 13px 0px rgba(140,140,140,1);
+    box-shadow: 0px 0px 13px 0px rgba(140,140,140,1);
+}
+.comment>div>h3{
+    text-transform: uppercase;
+}
+.comment>div>span{
+    position: absolute;
+    right: 10px;
+}
+.comments>div>div:last-child{
+    margin-top: 40px;
+}
+.comment_button{
+    width: 200px;
+    border: 1px solid #0f78c3;
+    margin: 30px auto 0 auto;
+    border-radius: 15px;
+    line-height: 30px;
+    height: 30px;
+    text-align: center;
+    color: #0f78c3;
+    cursor: pointer;
+}
+.comment_button:hover{
+    background-color: #0f78c3;
+    color: white;
+}
+.comment_button>span{
+    position: relative;
+    top: 2px;
+}
+.comment_button>span:hover{
+    color: white;
+}
+/* Large Devices, Wide Screens */
+@media only screen and (min-width: 992px) and (max-width: 1200px){
+    .prints{
+        background: url(../img/background.jpg) 50% 0% no-repeat;
+        height: 700px;
+        width: 100%;
+        background-size: cover;
+        background-size: 960px ;
+
+    }
+    .prints_img{
+        height: auto;
+    }
+    .prints_img > .print{
+        height: 440px;
+        margin-left: 55px;
+        margin-right: 64px;
+    }
+    .prints_img > .print > img{
+        width: 150px;
+        height: 150px;
+        position: relative;
+        top: calc(51% - 150px/2);
+        left: calc(51% - 150px/2);
+        background: white;
+        padding: 5px;
+    }
+    
+    .right-box{
+        margin-top: 50px;
+        display: block;
+    }
+    
+    .button-group>div{
+        list-style: none;
+        display: inline-block;
+        width: 50%;
+        text-align: center;
+        padding: 10px 0;
+        background-color: white;
+        float: left;
+        font-family: "PoppinsMedium";
+    }
+
+    .button-group>div:first-child>a{
+        padding: 9px 49px;
+    }
+    .button-group>div:last-child>a{
+        padding: 9px 57px;
+    }
+    
+    #button-cart{
+        padding: 2px 27px;
+        
+    }
+    #button-cart:hover{
+        background-color: lawngreen;
+    }
+    .viewed{
+        margin: 40px auto 0 auto;
+        width: 95%;
+        background-color: #f8f8f8;
+        text-align: center;
+        padding: 5px 0;
+    }
+    .comment>div>img{
+        width: 90px;
+        margin-top: 20px;
+        
+    }
+}
+/* tablets */
+@media only screen and (min-width: 768px) and (max-width: 991px){
+    .prints{
+        background: url("http://127.0.0.1:53682/css/../img/background_mob.jpg") 50% 0% no-repeat;
+        
+        height: auto;
+        width: 97%;
+        background-size: cover;
+        background-size: 710px;
+
+    }
+    
+
+    .prints_img > .print{
+        height: 526px;
+        margin-left: 58px;
+        margin-right: 64px;
+    }
+    .prints_img > .print > img{
+        width: 150px;
+        height: 150px;
+        position: relative;
+        top: calc(51% - 150px/2);
+        left: calc(51% - 150px/2);
+        background: white;
+        padding: 5px;
+    }
+    .right-box{
+        margin-top: 0px;
+    }
+    .prints>.right-box{
+        margin-top: 285px;
+    }
+    
+    .right-box>div:nth-child(2){
+        margin-top: 45px;
+    }
+
+    .button-group>div:first-child>a{
+        padding: 9px 152px !important;
+        
+    }
+    .button-group>div:last-child>a{
+        padding: 9px 157px !important;
+        
+    }
+    
+    .short_description{
+        padding: 0 10px 0 10px;
+    }
+    .short_description>p{
+        margin: 0;
+    }
+    .buy{
+        background-color: white;
+        padding: 20px 0;
+    }
+    .buy>div{
+        text-align: center;
+    }
+    .buy>div:first-child{
+        padding-left: 15px;
+        font-size: 120%;
+    }
+    .price{
+        font-family: 'PoppinsMedium';
+        font-size: 110% !important;
+    }
+    #button-cart{
+        padding: 2px 40px;
+        border: 1px solid lawngreen;
+        background-color: white;
+        margin-top: -2px;
+    }
+    #button-cart:hover{
+        background-color: lawngreen;
+    }
+    .viewed{
+        margin: 40px auto 0 auto;
+        width: 95%;
+        background-color: #f8f8f8;
+        text-align: center;
+        padding: 5px 0;
+    }
+}
+@media only screen and (min-width: 320px) and (max-width: 767px){
+    
+    .original>.print>img{
+        width: 100%;
+        margin-top: 0px;
+    }
+    .right-box{
+        margin-top: 20px; 
+        display: block;
+        /display: none;
+    }
+    .prints>.right-box{
+        margin-top: 130px;
+    }
+
+    .right-box>div:nth-child(2){
+        margin-top: 45px;
+    }
+
+    .button-group>div:first-child>a{
+        padding: 9px 30px !important;
+
+    }
+    .button-group>div:last-child>a{
+        padding: 9px 30px !important;
+
+    }
+    .button-group>div:first-child>a:hover{
+        border: 0px solid #337ab7;
+        text-decoration: none;
+    }
+    .button-group>div:last-child>a:hover{
+        border: 0px solid #337ab7;
+        text-decoration: none;
+    }
+
+    .short_description{
+        padding: 0 10px 0 10px;
+    }
+    .short_description>p{
+        margin: 0;
+    }
+    .buy{
+        background-color: white;
+        padding: 20px 0;
+    }
+    .buy>div{
+        text-align: center;
+    }
+    .buy>div:first-child{
+        padding-left: 15px;
+        font-size: 120%;
+    }
+    .price{
+        font-family: 'PoppinsMedium';
+        font-size: 110% !important;
+    }
+    #button-cart{
+        padding: 2px 40px;
+        border: 1px solid lawngreen;
+        background-color: white;
+        margin-top: 10px;
+
+        
+    }
+    #button-cart:hover{
+        background-color: lawngreen;
+    }
+    .viewed{
+        margin: 20px auto 0 auto;
+        width: 95%;
+        background-color: #f8f8f8;
+        text-align: center;
+        padding: 5px 0;
+    }
+    
+    .section2{
+        /margin-top: 500px;
+    }
+    .comment>div>img{
+        width: 50px;
+        margin-top: 20px;
+        margin-left: -10px;
+        display: none;
+
+    }
+}

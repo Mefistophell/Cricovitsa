@@ -1,0 +1,21 @@
+
+body,
+main,
+html{
+    overflow-x: hidden !important;
+    margin: 0;
+    color: black;
+    position: relative;
+    width: 100%;
+    font-family: "PoppinsLight";
+    
+}
+p,h6,h5,h4{
+    font-family: "PoppinsLight";
+}
+h2,h3,h1{
+    font-family: "PoppinsMedium";
+}
+.hidden {
+	display: none;
+}
