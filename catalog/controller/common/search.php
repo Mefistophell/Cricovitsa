@@ -7,7 +7,7 @@ class ControllerCommonSearch extends Controller {
 
 		if (isset($this->request->get['search'])) {
 			$data['search'] = $this->request->get['search'];
-             $data['selected_art'] = 'selected="selected"';
+            $data['selected_art'] = 'selected="selected"';
             $data['selected_artist'] = '';
         } elseif (isset($this->request->get['name'])) {
             $data['search'] = $this->request->get['name'];
