@@ -78,44 +78,17 @@
 
     <div class="menu-mobile visible-xs visible-sm">
         <div class="menu-list">
+            <?php if ($categories) { ?>
+            <?php foreach ($categories as $category) { ?>
             <ul>
                 <div class="accordion">
-                    <div class="accordion-item"><a href="#"><h4>Paintings<img src="img/expand-button_light.svg" alt=""></h4></a></div>
-                    <div class="data row">
-                        <div class="container">
-                            <div class="col-xs-4">
-                                <h5>Style</h5>
-                                <a href="">Fine Art</a>
-                                <a href="">Abstract</a>
-                                <a href="">Modern</a>
-                                <a href="">Street Art</a>
-                                <a href="">Pop Art</a>
-                            </div>
-                            <div class="col-xs-4">
-                                <h5>Subject</h5>
-                                <a href="">Landscape</a>
-                                <a href="">Portrait</a>
-                                <a href="">Nature</a>
-                                <a href="">Still life</a>
-                                <a href="">Beach</a>
-                            </div>
-                            <div class="col-xs-4">
-                                <h5>Medium</h5>
-                                <a href="">Oil</a>
-                                <a href="">Watercolor</a>
-                                <a href="">Acrylic</a>
-                                <a href="">AirBrush</a>
-                                <a href="">Digital</a>
-                            </div>
-                        </div>
+                    <div class="accordion-item">
+                        <a href="<?php echo $category['href']; ?>"><h4><?php echo $category['name']; ?></h4></a>
                     </div>
                 </div>
-                <li><a href="#"><h4>Sculptures</h4></a></li>
-                <li><a href="#"><h4>Photography</h4></a></li>
-                <li><a href="#"><h4>Prints</h4></a></li>
-                <li><a href="#"><h4>News</h4></a></li>
-                <li><a href="#"><h4>Art Consulting</h4></a></li>
             </ul>
+            <?php } ?>
+            <?php } ?>
         </div>
         <div class="menu-button">
             <i class="fa fa-bars fa-2x button-menu" aria-hidden="true"></i>
