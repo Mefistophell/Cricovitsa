@@ -49,7 +49,6 @@
         <link type="text/css" rel="stylesheet" href="catalog/view/theme/default/stylesheet/css/font-awesome.min.css" />
         <link type="text/css" rel="stylesheet" href="catalog/view/theme/default/stylesheet/css/animate.css" />
         <link type="text/css" rel="stylesheet" href="catalog/view/theme/default/stylesheet/css/mosch.css" />
-        <link type="text/css" rel="stylesheet" href="catalog/view/theme/default/stylesheet/css/4.css" />
         <link type="text/css" href="catalog/view/theme/default/stylesheet/css/jquery.formstyler.css" rel="stylesheet" />
         
         
