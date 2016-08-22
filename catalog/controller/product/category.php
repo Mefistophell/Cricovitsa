@@ -54,6 +54,8 @@ class ControllerProductCategory extends Controller {
 			'text' => $this->language->get('text_home'),
 			'href' => $this->url->link('common/home')
 		);
+        
+        $this->document->addStyle('catalog/view/theme/default/stylesheet/css/4.css');
 
 		if (isset($this->request->get['path'])) {
 			$url = '';
