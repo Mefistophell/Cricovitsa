@@ -18,15 +18,16 @@
         </div>
         <div class="row marg25">
             <?php foreach ($categories as $category) { ?>
+            <?php static $cat = 1; ?>
             <div class="col-md-3 col-sm-3 col-xs-6 padding10">
-                <div class="item1 text-center">
+                <div class="item<?= $cat ?> text-center">
                     <a href="<?php echo $category['href'] ?>" class="s4-textlink ownbtn2 btn">
                         View the collection >
                     </a>
                 </div> 
                 <a href="<?php echo $category['href'] ?>" class="s1-link"><h5 class="marg25 marg990 padd50"><?php echo $category['name'] ?></h5></a>               
             </div>
-            <?php } ?>
+            <?php $cat++; } unset($cat); ?>
         </div>
     </div>
 </section>
