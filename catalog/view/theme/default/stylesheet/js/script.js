@@ -80,10 +80,14 @@ $('.tab-activate').click(function(){
     }
         
 
-$('.comments > div > .comment:gt(2)').hide();
-$('.comment_button').click(function(){
+$('.comments > div > div > .comment:gt(2)').hide();
+$('.comment_button').on('click', function(){
     $(this).hide();
-    $('.comments > div > .comment:gt(2)').slideDown();
+    $('.comments > div > div > .comment:gt(2)').slideDown();
+});
+
+$('.review_button').on('click', function(){
+    $('.box-review').toggle();
 });
     
     
