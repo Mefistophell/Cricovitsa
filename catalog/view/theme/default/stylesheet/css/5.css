@@ -61,13 +61,13 @@ main>section:first-child{
     text-align: center;
 }
 
-.original>.print{
+.original>.thumbnails{
     margin-top: 50px;
     width: 100%;
     text-align: center;
     margin-bottom: 20px;
 }
-.prints_img > .print{
+/*.prints_img > .print{
     height: 540px;
     margin-left: 37px;
     margin-right: 87px;
@@ -85,7 +85,7 @@ main>section:first-child{
 .print>img{
     width: auto;
     height: 100%;
-}
+}*/
 
 
 .button-group{
@@ -202,7 +202,29 @@ main>section:first-child{
     text-align: inherit;
 }
 .section4{
-    padding-bottom: 40px;
+    //padding-bottom: 40px;
+}
+.section2, .section4{
+    padding: 0px;
+}
+.box-review {
+    display: none;
+}
+.review_button {
+    float: left;
+    width: 200px;
+    border: 1px solid #0f78c3;
+    margin: 30px auto 0 auto;
+    border-radius: 15px;
+    line-height: 30px;
+    height: 30px;
+    text-align: center;
+    color: #0f78c3;
+    cursor: pointer;
+}
+.review_button:hover {
+    background-color: #0f78c3;
+    color: white;
 }
 .comment>div>img{
     width: 110px;
@@ -475,9 +497,6 @@ main>section:first-child{
         padding: 5px 0;
     }
     
-    .section2{
-        /margin-top: 500px;
-    }
     .comment>div>img{
         width: 50px;
         margin-top: 20px;
