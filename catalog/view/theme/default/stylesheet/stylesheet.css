@@ -619,7 +619,7 @@ h2.price {
     font-size: 12px;
     display: block;
 }
-.product-thumb .button-group {
+/*.product-thumb .button-group {
     border-top: 1px solid #ddd;
     background-color: #eee;
     overflow: auto;
@@ -663,7 +663,7 @@ h2.price {
     .product-thumb .button-group button, .product-thumb .button-group button + button {
         width: 33.33%;
     }
-}
+}*/
 .thumbnails {
     overflow: auto;
     clear: both;
