@@ -1,73 +1,53 @@
-<div class="list-group hidden">
-    <?php foreach ($categories as $category) { ?>
-    <?php if ($category['category_id'] == $category_id) { ?>
-    <a href="<?php echo $category['href']; ?>" class="list-group-item active"><?php echo $category['name']; ?></a>
-    <?php if ($category['children']) { ?>
-    <?php foreach ($category['children'] as $child) { ?>
-    <?php if ($child['category_id'] == $child_id) { ?>
-    <a href="<?php echo $child['href']; ?>" class="list-group-item active">&nbsp;&nbsp;&nbsp;- <?php echo $child['name']; ?></a>
-    <?php } else { ?>
-    <a href="<?php echo $child['href']; ?>" class="list-group-item">&nbsp;&nbsp;&nbsp;- <?php echo $child['name']; ?></a>
-    <?php } ?>
-    <?php } ?>
-    <?php } ?>
-    <?php } else { ?>
-    <a href="<?php echo $category['href']; ?>" class="list-group-item"><?php echo $category['name']; ?></a>
-    <?php } ?>
-    <?php } ?>
-</div>
-<div class="row">
-    <div class="categories-filters">
-        <div class="col-sm-2 col-sm-offset-0">
-            <select onchange="fcat($(this), 0)">
-                <option value="0">- All -</option>
-                <?php foreach ($categories as $category) { ?>
+<div class="lol marg25-2">
+    <div class="width20 ">
+        <select class="style2 styled s1-text1 blo" size="1" onchange="fcat($(this), 0)">
+            <option value="0">- All -</option>
+            <?php foreach ($categories as $category) { ?>
                 <?php if($category['level'] == 0) { ?>
-                <option class="level_<?php echo $category['level']; ?>" value="<?php echo $category['category_id']; ?>" data-href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></option>
+                    <option class="level_<?php echo $category['level']; ?>" value="<?php echo $category['category_id']; ?>" data-href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></option>
                 <?php } ?>
-                <?php } ?>
-            </select>
-        </div>
-        <div class="col-sm-2">
-            <select onchange="fcat($(this), 1)">
-                <option value="0">- All -</option>
-                <?php foreach ($categories as $category) { ?>
+            <?php } ?>
+        </select>
+    </div>
+    <div class="width20">
+        <select class="style2 styled s1-text1 blo" size="1" onchange="fcat($(this), 1)">
+            <option value="0">- All Subject -</option>
+            <?php foreach ($categories as $category) { ?>
                 <?php if($category['level'] == 1) { ?>
-                <option class="level_<?php echo $category['level']; ?>" value="<?php echo $category['category_id']; ?>" data-href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></option>
+                    <option class="level_<?php echo $category['level']; ?>" value="<?php echo $category['category_id']; ?>" data-href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></option>
                 <?php } ?>
-                <?php } ?>
-            </select>
-        </div>
-        <div class="col-sm-2">
-            <select onchange="fcat($(this), 2)">
-                <option value="0">- All -</option>
-                <?php foreach ($categories as $category) { ?>
+            <?php } ?>
+        </select>
+    </div>
+    <div class="width20">
+        <select class="style2 styled s1-text1 blo" size="1" onchange="fcat($(this), 2)">
+            <option value="0">- All Medium -</option>
+            <?php foreach ($categories as $category) { ?>
                 <?php if($category['level'] == 2) { ?>
-                <option class="level_<?php echo $category['level']; ?>" value="<?php echo $category['category_id']; ?>" data-href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></option>
+                    <option class="level_<?php echo $category['level']; ?>" value="<?php echo $category['category_id']; ?>" data-href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></option>
                 <?php } ?>
-                <?php } ?>
-            </select>
-        </div>
-        <div class="col-sm-2">
-            <select onchange="fcat($(this), 3)">
-                <option value="0">- All -</option>
-                <?php foreach ($categories as $category) { ?>
+            <?php } ?>
+        </select>
+    </div>
+    <div class="width20">
+        <select class="style2 styled s1-text1 blo" size="1" onchange="fcat($(this), 3)">
+            <option value="0">- All Style -</option>
+            <?php foreach ($categories as $category) { ?>
                 <?php if($category['level'] == 3) { ?>
-                <option class="level_<?php echo $category['level']; ?>" value="<?php echo $category['category_id']; ?>" data-href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></option>
+                    <option class="level_<?php echo $category['level']; ?>" value="<?php echo $category['category_id']; ?>" data-href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></option>
                 <?php } ?>
-                <?php } ?>
-            </select>
-        </div>
-        <div class="col-sm-2">
-            <select onchange="fcat($(this), 4)">
-                <option value="0">- All -</option>
-                <?php foreach ($categories as $category) { ?>
+            <?php } ?>
+        </select>
+    </div>
+    <div class="width20">
+        <select class="style2 styled s1-text1 blo" size="1" onchange="fcat($(this), 4)">
+            <option value="0">- All -</option>
+            <?php foreach ($categories as $category) { ?>
                 <?php if($category['level'] == 4) { ?>
-                <option class="level_<?php echo $category['level']; ?>" value="<?php echo $category['category_id']; ?>" data-href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></option>
+                    <option class="level_<?php echo $category['level']; ?>" value="<?php echo $category['category_id']; ?>" data-href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></option>
                 <?php } ?>
-                <?php } ?>
-            </select>
-        </div>
+            <?php } ?>
+        </select>
     </div>
 </div>
 
