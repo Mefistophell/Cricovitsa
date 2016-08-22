@@ -1,10 +1,4 @@
 <?php echo $header; ?>
-<ul class="breadcrumb">
-    <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-    <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
-    <?php } ?>
-</ul>
-
 <!-- 1 -->
 <section class="section1">
     <div class="container">
@@ -14,7 +8,8 @@
                     <p class="s1-text1">
                         <?php foreach ($breadcrumbs as $breadcrumb) { ?>
                         <a class="s1-link" href="<?php echo $breadcrumb['href']; ?>">
-                            <h5 class="inl"><?php echo $breadcrumb['text']; ?></h5></a>
+                            <h5 class="inl"><?php echo $breadcrumb['text']; ?></h5>
+                        </a> | 
                         <?php } ?>
                     </p>
                 </div>
