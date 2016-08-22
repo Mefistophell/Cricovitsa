@@ -108,10 +108,10 @@ header ul.list-unstyled>li>a {
 
 /*PRODUCT*/
 
-section {
+/*section {
     background: #f8f8f8;
     padding: 30px 0;
-}
+}*/
 
 .thumbnail-pull {
     width: 86%;
@@ -274,4 +274,7 @@ h1, h2.title {
   line-height: 1.333;
   text-align: left;
   margin: 40px 0;
+}
+.sold {
+    display: none;
 }
