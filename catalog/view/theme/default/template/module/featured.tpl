@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <h4 class="s1-text4"><?php //echo $heading_title; ?>We reccomend</h4>
+            <h4 class="s1-text4"><?php echo $heading_title; ?></h4>
         </div>
     </div>
 
