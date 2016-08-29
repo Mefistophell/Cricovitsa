@@ -55,17 +55,19 @@
             </div>
             <div class="col-md-3 col-sm-3 col-xs-6 padding10">
                 <div class="item6 text-center">
-
+                    <a href="/index.php?route=module/featured/reccomend" class="s4-textlink ownbtn2 btn">
+                        View the collection >
+                    </a>
                 </div> 
-                <a href="#" class="s1-link"><h5 class="marg25 marg990 padd50">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </h5></a>               
+                <a href="/index.php?route=module/featured/reccomend" class="s1-link"><h5 class="marg25 marg990 padd50">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </h5></a>               
             </div>
             <div class="col-md-6 col-sm-6 col-xs-12 padding10">
                 <div class="item7 text-center mt480">
-                    <button type="button" class="s4-textlink ownbtn2 btn">
+                    <a href="/index.php?route=module/featured/trending" class="s4-textlink ownbtn2 btn">
                         View the collection >
-                    </button>
+                    </a>
                 </div> 
-                <a href="#" class="s1-link"><h5 class="marg25 marg990 padd100">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h5></a>               
+                <a href="/index.php?route=module/featured/trending" class="s1-link"><h5 class="marg25 marg990 padd100">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h5></a>               
             </div>
 
 
