@@ -7,7 +7,7 @@ class ControllerModuleFeatured extends Controller
     {
         $this->load->language('module/featured');
 
-        $data['heading_title'] = $this->language->get('heading_title');
+        $data['heading_title'] = $setting['name'];
 
         $data['text_tax'] = $this->language->get('text_tax');
 
@@ -82,7 +82,17 @@ class ControllerModuleFeatured extends Controller
         }
     }
 
-    public function page()
+    public function reccomend()
+    {
+        $this->getView(28, 'reccomend', 'We reccomend');
+    }
+
+    public function trending()
+    {
+        $this->getView(39, 'trending', 'Trending now');
+    }
+
+    protected function getView($id, $name, $module_name)
     {
         $data['breadcrumbs'] = array();
 
@@ -91,12 +101,12 @@ class ControllerModuleFeatured extends Controller
             'href' => $this->url->link('common/home')
         );
         $data['breadcrumbs'][] = array(
-            'text' => 'We reccomend',
-            'href' => $this->url->link('module/featured/page')
+            'text' => $module_name,
+            'href' => $this->url->link('module/featured/' . $name)
         );
 
         $this->load->model('extension/module');
-        $config = $this->model_extension_module->getModule(28);
+        $config = $this->model_extension_module->getModule($id);
 
         //$module = $this->registry->get('load')->controller('module/featured', $config);
         $module = $this->load->controller('module/featured', $config);
@@ -105,6 +115,6 @@ class ControllerModuleFeatured extends Controller
         $data['footer'] = $this->load->controller('common/footer');
         $data['header'] = $this->load->controller('common/header');
 
-        $this->response->setOutput($this->load->view('module/featured_page', $data));
+        $this->response->setOutput($this->load->view('module/we_reccomend', $data));
     }
 }
