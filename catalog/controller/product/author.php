@@ -143,6 +143,8 @@ class ControllerProductAuthor extends Controller {
 				'text' => $author_info['firstname'],
 				'href' => $this->url->link('product/author/info', 'author_id=' . $this->request->get['author_id'] . $url)
 			);
+            
+            $this->document->addStyle('catalog/view/theme/default/stylesheet/css/4.css');
 
 			$data['heading_title'] = $author_info['firstname'];
 
