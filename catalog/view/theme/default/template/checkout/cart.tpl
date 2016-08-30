@@ -1,25 +1,30 @@
 <?php echo $header; ?>
 <div class="container">
-  <ul class="breadcrumb">
-    <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-    <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
-    <?php } ?>
-  </ul>
-  <?php if ($attention) { ?>
-  <div class="alert alert-info"><i class="fa fa-info-circle"></i> <?php echo $attention; ?>
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-  </div>
-  <?php } ?>
-  <?php if ($success) { ?>
-  <div class="alert alert-success"><i class="fa fa-check-circle"></i> <?php echo $success; ?>
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-  </div>
-  <?php } ?>
-  <?php if ($error_warning) { ?>
-  <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> <?php echo $error_warning; ?>
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-  </div>
-  <?php } ?>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <p class="s1-text1">
+                <?php foreach ($breadcrumbs as $breadcrumb) { ?>
+                <a class="s1-link" href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
+                <?php } ?>
+            </p>
+            <?php if ($attention) { ?>
+            <div class="alert alert-info"><i class="fa fa-info-circle"></i> <?php echo $attention; ?>
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+            <?php } ?>
+            <?php if ($success) { ?>
+            <div class="alert alert-success"><i class="fa fa-check-circle"></i> <?php echo $success; ?>
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+            <?php } ?>
+            <?php if ($error_warning) { ?>
+            <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> <?php echo $error_warning; ?>
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+            </div>
+            <?php } ?>
+        </div>
+    </div>
+
   <div class="row"><?php echo $column_left; ?>
     <?php if ($column_left && $column_right) { ?>
     <?php $class = 'col-sm-6'; ?>
