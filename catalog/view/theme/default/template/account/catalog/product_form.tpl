@@ -6,11 +6,15 @@
 <script src="catalog/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
 <link href="catalog/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet" media="screen" />
 <div class="container">
-  <ul class="breadcrumb">
-    <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-    <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
-    <?php } ?>
-  </ul>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <p class="s1-text1">
+                <?php foreach ($breadcrumbs as $breadcrumb) { ?>
+                <a class="s1-link" href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
+                <?php } ?>
+            </p>
+        </div>
+    </div>
   <div class="row"><?php echo $column_left; ?>
     <?php if ($column_left && $column_right) { ?>
     <?php $class = 'col-sm-6'; ?>
@@ -239,11 +243,16 @@
               </div>-->
               
               <div class="form-group">
-                <label class="col-sm-12"><span data-toggle="tooltip" title="<?php echo $help_category; ?>"><?php echo $entry_category; ?></span></label>
+                <label class="col-sm-12"><span data-toggle="tooltip" title="<?php echo $help_category; ?>"></span></label>
                 <div class="col-sm-12">
                   <div class="">
                       <?php for($i = 0; $i < $levels; $i++) {
-                        echo 'Level ' . $i; ?>
+                      switch ($i) {
+                      case 0: echo '<h3 class="text-center">Category</h3>'; break;
+                      case 1: echo '<h3 class="text-center">Subject</h3>'; break;
+                      case 2: echo '<h3 class="text-center">Medium</h3>'; break;
+                      case 3: echo '<h3 class="text-center">Style</h3>'; break;
+                      } ?>
                         <div class="row">
                         <?php foreach ($categories[$i] as $product_category) { 
                             if($product_id) {

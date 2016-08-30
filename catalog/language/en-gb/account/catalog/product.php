@@ -124,7 +124,6 @@ $_['text_pagination']               = 'Showing %d to %d of %d (%d Pages)';
 $_['text_loading']                  = 'Loading...';
 $_['text_no_results']               = 'No results!';
 $_['text_confirm']                  = 'Are you sure?';
-$_['text_home']                     = 'Home';
 
 // Button
 $_['button_add']                    = 'Add New';

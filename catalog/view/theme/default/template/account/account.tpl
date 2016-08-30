@@ -1,13 +1,17 @@
 <?php echo $header; ?>
 <div class="container">
-  <ul class="breadcrumb">
-    <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-    <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
-    <?php } ?>
-  </ul>
-  <?php if ($success) { ?>
-  <div class="alert alert-success"><i class="fa fa-check-circle"></i> <?php echo $success; ?></div>
-  <?php } ?>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <p class="s1-text1">
+                <?php foreach ($breadcrumbs as $breadcrumb) { ?>
+                <a class="s1-link" href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
+                <?php } ?>
+            </p>
+            <?php if ($success) { ?>
+            <div class="alert alert-success"><i class="fa fa-check-circle"></i> <?php echo $success; ?></div>
+            <?php } ?>
+        </div>
+    </div>
   <div class="row"><?php echo $column_left; ?>
     <?php if ($column_left && $column_right) { ?>
     <?php $class = 'col-sm-6'; ?>
@@ -35,13 +39,8 @@
       <h2><?php echo $text_my_orders; ?></h2>
       <ul class="list-unstyled">
         <li><a href="<?php echo $order; ?>"><?php echo $text_order; ?></a></li>
-        <li><a href="<?php echo $download; ?>"><?php echo $text_download; ?></a></li>
-        <?php if ($reward) { ?>
-        <li><a href="<?php echo $reward; ?>"><?php echo $text_reward; ?></a></li>
-        <?php } ?>
         <li><a href="<?php echo $return; ?>"><?php echo $text_return; ?></a></li>
         <li><a href="<?php echo $transaction; ?>"><?php echo $text_transaction; ?></a></li>
-        <li><a href="<?php echo $recurring; ?>"><?php echo $text_recurring; ?></a></li>
       </ul>
       <!-- -->
       <?php if ($seller == 1) { ?>
@@ -50,11 +49,8 @@
         <li><a href="<?php echo $seller_edit; ?>"><?php echo $text_selleredit; ?></a></li>
         <li><a href="<?php echo $product_add; ?>"><?php echo $text_product_add; ?></a></li>
         <li><a href="<?php echo $product_form; ?>"><?php echo $text_productlist; ?></a></li>
-        <li><a href="<?php echo $download_add; ?>"><?php echo $text_download_add; ?></a></li>
-        <li><a href="<?php echo $download_form; ?>"><?php echo $text_downloadlist; ?></a></li>
         <li><a href="<?php echo $orderlist; ?>"><?php echo $text_orderlist; ?></a></li>
         <li><a href="<?php echo $seller_transaction; ?>"><?php echo $text_transaction; ?></a></li>
-        <li><a href="<?php echo $returnlist; ?>"><?php echo $text_return; ?></a></li>
       </ul>
       <?php } ?>
       <!-- -->

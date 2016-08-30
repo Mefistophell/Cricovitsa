@@ -1,13 +1,17 @@
 <?php echo $header; ?>
 <div class="container">
-  <ul class="breadcrumb">
-    <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-    <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
-    <?php } ?>
-  </ul>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <p class="s1-text1">
+                <?php foreach ($breadcrumbs as $breadcrumb) { ?>
+                <a class="s1-link" href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a>
+                <?php } ?>
+            </p>
   <?php if ($error_warning) { ?>
   <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> <?php echo $error_warning; ?></div>
   <?php } ?>
+        </div>
+    </div>
   <div class="row"><?php echo $column_left; ?>
     <?php if ($column_left && $column_right) { ?>
     <?php $class = 'col-sm-6'; ?>
@@ -36,7 +40,7 @@
         </fieldset>
         <fieldset id="account">
           <legend><?php echo $text_your_details; ?></legend>
-          <div class="form-group required" style="display: <?php echo (count($customer_groups) > 1 ? 'block' : 'none'); ?>;">
+          <div class="form-group required row" style="display: <?php echo (count($customer_groups) > 1 ? 'block' : 'none'); ?>;">
             <label class="col-sm-2 control-label"><?php echo $entry_customer_group; ?></label>
             <div class="col-sm-10">
               <?php foreach ($customer_groups as $customer_group) { ?>

@@ -278,3 +278,30 @@ h1, h2.title {
 .sold {
     display: none;
 }
+.s1-text1 > a + a:before {
+    content: ' | ';
+    padding: 0;
+}
+div#tab-option {
+    font-size: 12px;
+}
+div#tab-option .form-control {
+    height: 26px;
+    padding: 2px 2px;
+    border-radius: inherit;
+}
+div#tab-option td[class^='ddd'] {
+    width: 20%;
+}
+div#tab-option td:first-child {
+    width: 15%;
+}
+div#tab-option td[class^='dde'] {
+    width: 1%;
+}
+div#tab-option select {
+    padding-left: 0;
+}
+div#tab-option .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    padding:4px;
+}
