@@ -306,3 +306,15 @@ div#tab-option select {
 div#tab-option .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
     padding:4px;
 }
+.category-level {
+    font-family: "PoppinsMedium";
+}
+#menu .dropdown-inner a {
+    padding: 6px 20px;
+    font-size: 14px;
+    font-family: "PoppinsLight"
+}
+.dropdown-menu li > a:hover, #menu .see-all:hover, #menu .see-all:focus {
+    background-color: #3f3f3f;
+    background-image: none;
+}
