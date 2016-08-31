@@ -81,7 +81,14 @@
                            <?php echo $search; ?> 
                         </div>
                         <div class="col-lg-2 col-md-3">
-                            <a href="<?php echo $register; ?>"><?php echo $text_register; ?></a> <span>|</span> <a href="<?php echo $login; ?>"><?php echo $text_login; ?></a>
+                            <?php if ($logged) { ?>
+                                <a href="<?php echo $logout; ?>"><?php echo $text_logout; ?></a>
+                                &nbsp;&nbsp;&nbsp;
+                             <?php } else { ?>
+                                <a href="<?php echo $register; ?>"><?php echo $text_register; ?></a> 
+                                <span>|</span> 
+                                <a href="<?php echo $login; ?>"><?php echo $text_login; ?></a>
+                             <?php } ?>
                             <?php echo $cart; ?>
                         </div>
                     </div>
@@ -130,19 +137,19 @@
                     switch ($child['level']) {
                     case 1: if ($l1 > 5) continue; ?>
                         <?php if ($l1 == 0) { ?>
-                            $('.c<?php echo $c; ?> .le1').append('<li><b class="category-level">MEDIUM</b></li>');
+                            $('.c<?php echo $c; ?> .le1').append('<li><h5 class="category-level">SUBJECT</h5></li>');
                         <?php } ?>
                         $('.c<?php echo $c; ?> .le1').append('<li><a href=\'<?php echo $child["href"]; ?>\'><?php echo $child["name"]; ?></a></li>');
                     <?php  $l1++;   break;
                     case 2: if ($l2 > 5) continue; ?>
                         <?php if ($l2 == 0) { ?>
-                            $('.c<?php echo $c; ?> .le2').append('<li><b class="category-level">STYLE</b></li>');
+                            $('.c<?php echo $c; ?> .le2').append('<li><h5 class="category-level">MEDIUM</h5></li>');
                         <?php } ?>
                         $('.c<?php echo $c; ?> .le2').append('<li><a href=\'<?php echo $child["href"]; ?>\'><?php echo $child["name"]; ?></a></li>');
                     <?php  $l2++;  break;
                     case 3: if ($l3 > 5) continue; ?>
                         <?php if ($l3 == 0) { ?>
-                            $('.c<?php echo $c; ?> .le3').append('<li><b class="category-level">SUBJECT</b></li>');
+                            $('.c<?php echo $c; ?> .le3').append('<li><h5 class="category-level">STYLE</h5></li>');
                         <?php } ?>
                         $('.c<?php echo $c; ?> .le3').append('<li><a href=\'<?php echo $child["href"]; ?>\'><?php echo $child["name"]; ?></a></li>');
                     <?php  $l3++;  break;
