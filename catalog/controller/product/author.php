@@ -149,6 +149,8 @@ class ControllerProductAuthor extends Controller {
             $this->document->addStyle('catalog/view/theme/default/stylesheet/css/4.css');
 
 			$data['heading_title'] = $author_info['firstname'];
+			$data['description'] = $author_info['sellerdescription'];
+			$data['logo'] = $this->model_tool_image->resize($author_info['logo'], $this->config->get($this->config->get('config_theme') . '_image_compare_width'), $this->config->get($this->config->get('config_theme') . '_image_compare_height'));
 
 			$data['text_empty'] = $this->language->get('text_empty');
 			$data['text_quantity'] = $this->language->get('text_quantity');
