@@ -49,7 +49,9 @@
         <div class="row marg25 marg990">
             <div class="col-md-3 col-sm-3 col-xs-6 padding10">
                 <div class="item5 text-center">
-
+                    <a href="/index.php?route=information/news" class="s4-textlink ownbtn2 btn">
+                        View our news >
+                    </a>
                 </div> 
                 <a href="#" class="s1-link"><h5 class="marg25 marg990 padd50">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </h5></a>             
             </div>
