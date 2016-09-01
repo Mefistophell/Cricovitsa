@@ -269,12 +269,12 @@ h1, h2.title {
     margin-bottom: 20px;
 }*/
 .description {
-  font-size: 18px;
-  font-family: Poppins Light;
-  color: rgb(33, 31, 32);
-  line-height: 1.333;
-  text-align: left;
-  margin: 40px 0;
+    font-size: 18px;
+    font-family: Poppins Light;
+    color: rgb(33, 31, 32);
+    line-height: 1.333;
+    text-align: left;
+    margin: 40px 0;
 }
 .sold {
     display: none;
@@ -323,4 +323,8 @@ div#tab-option .table > thead > tr > th, .table > tbody > tr > th, .table > tfoo
     top: -41px;
     left: 23px;
     font-size: 16px
+}
+.artist_logo {
+    float: left;
+    padding-right: 16px;
 }
