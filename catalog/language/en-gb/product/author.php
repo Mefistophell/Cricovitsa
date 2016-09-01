@@ -1,14 +1,14 @@
 <?php
 // Heading
-$_['heading_title']     = 'Find Your Favorite Author';
+$_['heading_title']     = 'Find Your Favorite Artist';
 
 // Text
-$_['text_brand']        = 'Author';
-$_['text_index']        = 'Author Index:';
-$_['text_error']        = 'Author not found!';
+$_['text_brand']        = 'Artist';
+$_['text_index']        = 'Artist Index:';
+$_['text_error']        = 'Artist not found!';
 $_['text_empty']        = 'There are no products to list.';
 $_['text_quantity']     = 'Qty:';
-$_['text_manufacturer'] = 'Author:';
+$_['text_manufacturer'] = 'Artist:';
 $_['text_model']        = 'Product Code:';
 $_['text_points']       = 'Reward Points:';
 $_['text_price']        = 'Price:';
