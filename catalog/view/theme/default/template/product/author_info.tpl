@@ -4,8 +4,11 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="green-bord">
+                    <?php if($logo) { ?>
+                        <img class="artist_logo" src="<?php echo $logo; ?>">
+                    <?php } ?>
                     <h2 class="s1-text2"><?php echo $heading_title; ?></h2>
-                    <h4 class="s1-text3"></h4>
+                    <h4 class="s1-text3"><?php echo $description; ?></h4>
                 </div>
             </div>
         </div>
