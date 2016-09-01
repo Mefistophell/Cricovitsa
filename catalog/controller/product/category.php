@@ -416,7 +416,7 @@ class ControllerProductCategory extends Controller {
                 }
                 $data['categories'] = array();
 
-                $categories = $this->model_catalog_category->getCategoriesWithLevel();
+                $categories = $this->model_catalog_category->getMultiParentCategories($this->request->get['path']);
                 
                 foreach ($categories as $category) {
                     $children_data = array();
