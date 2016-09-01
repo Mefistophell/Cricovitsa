@@ -2,7 +2,7 @@
     <div class="width20 ">
         <select class="style2 styled s1-text1 blo" size="1" onchange="fcat($(this), 0)">
             <option value="0">- All -</option>
-            <?php foreach ($categories as $category) { ?>
+            <?php foreach ($categories_main as $category) { ?>
                 <?php if($category['level'] == 0) { ?>
                     <option class="level_<?php echo $category['level']; ?>" value="<?php echo $category['category_id']; ?>" data-href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></option>
                 <?php } ?>
