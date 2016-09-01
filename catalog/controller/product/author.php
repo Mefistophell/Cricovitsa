@@ -32,7 +32,9 @@ class ControllerProductAuthor extends Controller {
         
         if (isset($this->request->get['name'])) {
 			$filter['author_name'] = $this->request->get['name'];
-		}
+		} else {
+            $filter = FALSE;
+        }
 
 		$results = $this->model_catalog_author->getAuthors($filter);
 
