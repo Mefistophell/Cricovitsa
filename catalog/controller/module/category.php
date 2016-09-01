@@ -29,7 +29,7 @@ class ControllerModuleCategory extends Controller {
 
 		$data['categories'] = array();
 
-		$categories = $this->model_catalog_category->getCategoriesWithLevel(0);
+		$categories = $this->model_catalog_category->getMultiParentCategories($this->request->get['path']);
 
 		foreach ($categories as $category) {
 			$children_data = array();
@@ -61,6 +61,18 @@ class ControllerModuleCategory extends Controller {
 				'href'        => $this->url->link('product/category', 'path=' . $category['category_id'])
 			);
 		}
+        
+        $level_main = $this->model_catalog_category->getCategoriesByLevel(0);
+        
+        foreach($level_main as $category) {
+            $data['categories_main'][] = array(
+				'category_id' => $category['category_id'],
+                'level' => $category['level'],
+				'name'        => $category['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
+				'href'        => $this->url->link('product/category', 'path=' . $category['category_id'])
+			);  
+        }
+        
 
 		return $this->load->view('module/category', $data);
 	}
