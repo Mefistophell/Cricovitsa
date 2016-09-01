@@ -71,7 +71,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <a href="<?php echo $home; ?>">
-                        <img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="logo" />                                
+                        <img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="logo" />
                         <h4><?php echo $name; ?></h4>
                     </a>
                 </div>
@@ -95,6 +95,7 @@
                     <div class="row visible-md visible-lg">
                         <?php if ($categories) { ?>
                         <nav id="menu" class="navbar navigation">
+                            <i class="slogan">Taking art from the easel to the world</i>
                             <div class="navbar-header"><span id="category" class="visible-xs"><?php echo $text_category; ?></span>
                                 <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
                             </div>
