@@ -318,3 +318,9 @@ div#tab-option .table > thead > tr > th, .table > tbody > tr > th, .table > tfoo
     background-color: #3f3f3f;
     background-image: none;
 }
+.slogan {
+    position: absolute;
+    top: -41px;
+    left: 23px;
+    font-size: 16px
+}
