@@ -60,15 +60,11 @@
                 <div class="col-md-4 col-sm-4"> 
                     <h4><?php echo $text_service; ?></h4>
                     <a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a>
-                    <a href="<?php echo $return; ?>"><?php echo $text_return; ?></a>
                     <a href="<?php echo $sitemap; ?>"><?php echo $text_sitemap; ?></a>
                 </div>
                 <div class="col-md-4 col-sm-4">
                     <h4><?php echo $text_extra; ?></h4>
-                    <a href="<?php echo $manufacturer; ?>"><?php echo $text_manufacturer; ?></a>
-                    <a href="<?php echo $voucher; ?>"><?php echo $text_voucher; ?></a>
-                    <a href="<?php echo $affiliate; ?>"><?php echo $text_affiliate; ?></a>
-                    <a href="<?php echo $special; ?>"><?php echo $text_special; ?></a>
+                    <a href="<?php echo $artist; ?>"><?php echo $text_artist; ?></a>
                 </div>
             </div>
         </div>
