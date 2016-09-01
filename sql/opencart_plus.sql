@@ -316,9 +316,9 @@ CREATE TABLE `oc_category` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `oc_category` (`category_id`, `image`, `parent_id`, `top`, `popular`, `column`, `sort_order`, `status`, `date_added`, `date_modified`) VALUES
-(25,	'',	0,	1,	0,	1,	3,	1,	'2009-01-31 01:04:25',	'2016-08-01 13:23:58'),
-(20,	'catalog/demo/compaq_presario.jpg',	0,	1,	0,	1,	1,	1,	'2009-01-05 21:49:43',	'2016-08-01 13:21:48'),
-(18,	'catalog/demo/hp_2.jpg',	0,	1,	0,	0,	2,	1,	'2009-01-05 21:49:15',	'2016-08-01 13:22:42'),
+(25,	'',	0,	1,	0,	1,	3,	1,	'2009-01-31 01:04:25',	'2016-09-01 13:15:03'),
+(20,	'catalog/demo/compaq_presario.jpg',	0,	1,	0,	1,	1,	1,	'2009-01-05 21:49:43',	'2016-09-01 13:15:42'),
+(18,	'catalog/demo/hp_2.jpg',	0,	1,	0,	0,	2,	1,	'2009-01-05 21:49:15',	'2016-09-01 13:15:31'),
 (69,	'catalog/3.jpg',	0,	0,	0,	1,	3,	1,	'2016-08-01 16:12:42',	'2016-08-24 14:24:58'),
 (35,	'catalog/6.jpg',	0,	0,	0,	1,	1,	1,	'2010-09-17 10:06:48',	'2016-08-24 14:40:52'),
 (36,	'',	0,	0,	0,	1,	22,	1,	'2010-09-17 10:07:13',	'2016-08-16 15:02:48'),
@@ -328,7 +328,7 @@ INSERT INTO `oc_category` (`category_id`, `image`, `parent_id`, `top`, `popular`
 (63,	'',	0,	0,	0,	1,	19,	1,	'2016-08-01 13:39:54',	'2016-08-16 15:12:24'),
 (61,	'',	0,	0,	0,	1,	9,	1,	'2016-08-01 13:38:15',	'2016-08-16 15:09:11'),
 (60,	'',	0,	0,	0,	1,	8,	1,	'2016-08-01 13:37:19',	'2016-08-31 16:05:55'),
-(57,	'',	0,	1,	0,	1,	4,	1,	'2011-04-26 08:53:16',	'2016-08-01 13:25:00'),
+(57,	'',	0,	1,	0,	1,	4,	1,	'2011-04-26 08:53:16',	'2016-09-01 13:15:12'),
 (62,	'',	0,	0,	0,	1,	16,	1,	'2016-08-01 13:39:12',	'2016-08-16 15:11:40'),
 (70,	'catalog/4.jpg',	0,	0,	0,	1,	4,	1,	'2016-08-01 16:13:33',	'2016-08-24 14:26:29'),
 (71,	'',	0,	0,	0,	1,	5,	1,	'2016-08-01 16:18:35',	'2016-08-31 13:53:58'),
@@ -1617,7 +1617,8 @@ INSERT INTO `oc_customer_activity` (`customer_activity_id`, `customer_id`, `key`
 (12,	3,	'login',	'{\"customer_id\":\"3\",\"name\":\"Michel Gilles\"}',	'64.134.238.29',	'2016-08-28 20:47:11'),
 (13,	1,	'login',	'{\"customer_id\":\"1\",\"name\":\"Colly Nill\"}',	'92.249.103.157',	'2016-08-29 10:03:30'),
 (14,	1,	'login',	'{\"customer_id\":\"1\",\"name\":\"Colly Nill\"}',	'127.0.0.1',	'2016-08-31 21:58:12'),
-(15,	1,	'login',	'{\"customer_id\":\"1\",\"name\":\"Colly Nill\"}',	'127.0.0.1',	'2016-08-31 22:02:05');
+(15,	1,	'login',	'{\"customer_id\":\"1\",\"name\":\"Colly Nill\"}',	'127.0.0.1',	'2016-08-31 22:02:05'),
+(16,	1,	'login',	'{\"customer_id\":\"1\",\"name\":\"Colly Nill\"}',	'127.0.0.1',	'2016-09-01 16:04:26');
 
 DROP TABLE IF EXISTS `oc_customer_group`;
 CREATE TABLE `oc_customer_group` (
@@ -2580,9 +2581,9 @@ INSERT INTO `oc_product` (`product_id`, `seller_id`, `model`, `sku`, `upc`, `ean
 (64,	0,	'Tag',	'',	'',	'',	'',	'',	'',	'',	100,	6,	'catalog/1/q3sGvT7HWm8.jpg',	8,	1,	100.0000,	0,	0,	'2016-07-21',	0.00000000,	1,	0.00000000,	0.00000000,	0.00000000,	1,	1,	1,	1,	1,	9,	'2016-08-23 12:09:31',	'0000-00-00 00:00:00',	'2016-08-25 11:14:14'),
 (57,	0,	'Picture Style 2',	'',	'',	'',	'',	'',	'',	'',	100,	7,	'catalog/1/20160314_115429.jpg',	0,	1,	356.0000,	0,	0,	'2016-05-05',	0.00000000,	1,	0.00000000,	0.00000000,	0.00000000,	1,	1,	1,	1,	1,	10,	'2016-08-23 09:56:42',	'0000-00-00 00:00:00',	'2016-08-23 11:56:54'),
 (58,	0,	'Tag',	'',	'',	'',	'',	'',	'',	'',	100,	6,	'catalog/1/q3sGvT7HWm8.jpg',	8,	1,	100.0000,	0,	0,	'2016-07-21',	0.00000000,	1,	0.00000000,	0.00000000,	0.00000000,	1,	1,	1,	1,	1,	13,	'2016-08-23 09:56:42',	'0000-00-00 00:00:00',	'2016-08-23 12:09:10'),
-(59,	0,	'Picture Style 2',	'',	'',	'',	'',	'',	'',	'',	100,	7,	'catalog/demo/6q4aQjrVoY8.jpg',	8,	1,	100.0000,	0,	0,	'2016-07-21',	0.00000000,	1,	0.00000000,	0.00000000,	0.00000000,	1,	1,	1,	1,	1,	15,	'2016-08-23 12:05:03',	'0000-00-00 00:00:00',	'2016-08-23 12:06:48'),
+(59,	0,	'Picture Style 2',	'',	'',	'',	'',	'',	'',	'',	100,	7,	'catalog/demo/6q4aQjrVoY8.jpg',	8,	1,	100.0000,	0,	0,	'2016-07-21',	0.00000000,	1,	0.00000000,	0.00000000,	0.00000000,	1,	1,	1,	1,	1,	16,	'2016-08-23 12:05:03',	'0000-00-00 00:00:00',	'2016-08-23 12:06:48'),
 (60,	0,	'Picture Style ',	'',	'',	'',	'',	'',	'',	'',	100,	6,	'catalog/demo/6q4aQjrVoY8.jpg',	0,	1,	456.0000,	0,	0,	'2016-05-05',	0.00000000,	1,	0.00000000,	0.00000000,	0.00000000,	1,	1,	1,	1,	1,	12,	'2016-08-23 12:09:31',	'0000-00-00 00:00:00',	'2016-08-25 11:07:48'),
-(52,	0,	'Picture Style ',	'',	'',	'',	'',	'',	'',	'',	100,	7,	'catalog/demo/6q4aQjrVoY8.jpg',	0,	1,	456.0000,	0,	0,	'2016-05-05',	0.00000000,	1,	0.00000000,	0.00000000,	0.00000000,	1,	1,	1,	1,	1,	34,	'2016-05-05 13:08:04',	'2016-05-27 00:00:00',	'2016-08-29 20:44:11'),
+(52,	0,	'Picture Style ',	'',	'',	'',	'',	'',	'',	'',	100,	7,	'catalog/demo/6q4aQjrVoY8.jpg',	0,	1,	456.0000,	0,	0,	'2016-05-05',	0.00000000,	1,	0.00000000,	0.00000000,	0.00000000,	1,	1,	1,	1,	1,	39,	'2016-05-05 13:08:04',	'2016-05-27 00:00:00',	'2016-08-29 20:44:11'),
 (56,	1,	'ART-56',	'',	'',	'',	'',	'',	'',	'',	1,	6,	'catalog/1/KVNM3syVleQ.jpg',	0,	1,	100.0000,	0,	0,	'2016-07-21',	0.00000000,	1,	0.00000000,	0.00000000,	0.00000000,	1,	1,	1,	1,	1,	694,	'2016-07-21 21:12:50',	'2016-07-21 00:00:00',	'2016-08-31 22:07:12');
 
 DROP TABLE IF EXISTS `oc_product_attribute`;
@@ -3172,8 +3173,8 @@ CREATE TABLE `oc_seller` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `oc_seller` (`seller_id`, `firstname`, `lastname`, `logo`, `sellerdescription`, `email`, `telephone`, `fax`, `company`, `website`, `address_1`, `address_2`, `city`, `postcode`, `country_id`, `zone_id`, `code`, `commission`, `tax`, `payment`, `cheque`, `paypal`, `bank_name`, `bank_branch_number`, `bank_swift_code`, `bank_account_name`, `bank_account_number`, `ip`, `status`, `approved`, `date_added`) VALUES
-(0,	'Legacy artworks',	'Legacy artworks',	'catalog/logo.gif',	'Legacy artworks',	'lovecraft.crowley@gmail.com',	'123456789',	'',	'Legacy artworks',	'',	'Address 1',	'',	'test4',	'565454656',	222,	3563,	'hj68jut',	0.00,	'',	'cheque',	'k;l;lk;lk',	'',	'',	'',	'',	'',	'',	'',	1,	1,	'2016-05-06 20:55:20'),
-(1,	'Colly',	'Nill',	'',	'',	'lovecraft.crowley@gmail.com',	'0444122345',	'',	'',	'',	'Киевская 23',	'',	'Киев',	'04412',	220,	3490,	'',	5.00,	'',	'cheque',	'Colly',	'',	'',	'',	'',	'',	'',	'',	1,	1,	'2016-07-21 21:09:22'),
+(0,	'Legacy artworks',	'Legacy artworks',	'catalog/logo.gif',	'Legacy artworks',	'asklepiy@i.ua',	'123456789',	'',	'Legacy artworks',	'',	'Address 1',	'',	'test4',	'565454656',	222,	3563,	'hj68jut',	0.00,	'',	'cheque',	'k;l;lk;lk',	'',	'',	'',	'',	'',	'',	'',	1,	1,	'2016-05-06 20:55:20'),
+(1,	'Colly',	'Nill',	'catalog/1/q3sGvT7HWm8.jpg',	'cool man',	'lovecraft.crowley@gmail.com',	'0444122345',	'',	'',	'',	'Киевская 23',	'',	'Киев',	'04412',	220,	3490,	'',	5.00,	'',	'cheque',	'Colly',	'',	'',	'',	'',	'',	'',	'',	1,	1,	'2016-07-21 21:09:22'),
 (2,	'Maksym',	'Konovalenko',	'',	'',	'maksym_konovalenko@bk.ru',	'0933820622',	'',	'',	'',	'Kyiv',	'',	'Kyiv',	'01033',	220,	3490,	'',	5.00,	'',	'cheque',	'Maksym',	'',	'',	'',	'',	'',	'',	'',	1,	1,	'2016-08-16 19:51:19'),
 (3,	'Michel',	'Gilles',	NULL,	'',	'michelsauction@gmail.com',	'1 8574138808',	'',	'',	'',	'10 Rue du Marais',	'',	'La Force',	'24130',	74,	1138,	'',	5.00,	'',	'cheque',	'Michel',	'',	'',	'',	'',	'',	'',	'',	0,	0,	'2016-08-28 20:44:32');
 
@@ -3477,18 +3478,18 @@ CREATE TABLE `oc_url_alias` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `oc_url_alias` (`url_alias_id`, `query`, `keyword`) VALUES
-(1379,	'category_id=20',	'paintings'),
+(1477,	'category_id=20',	'paintings'),
 (857,	'category_id=26',	'paintings-subject'),
 (858,	'category_id=27',	'paintings-medium'),
 (730,	'manufacturer_id=8',	'apple'),
 (772,	'information_id=4',	'about_us'),
 (1339,	'category_id=36',	'photography-medium-lithograph'),
-(854,	'category_id=18',	'sculptures'),
+(1476,	'category_id=18',	'sculptures'),
 (1419,	'category_id=46',	'sculptures-abstract'),
 (1416,	'category_id=45',	'sculptures-art-deco'),
-(1369,	'category_id=25',	'photography'),
+(1474,	'category_id=25',	'photography'),
 (1409,	'category_id=35',	'photography-medium-black-and-digital'),
-(856,	'category_id=57',	'prints'),
+(1475,	'category_id=57',	'prints'),
 (873,	'category_id=65',	'prints-medium'),
 (872,	'category_id=64',	'prints-subject'),
 (1362,	'category_id=63',	'sculptures-surrealism'),
@@ -8078,4 +8079,4 @@ INSERT INTO `oc_zone_to_geo_zone` (`zone_to_geo_zone_id`, `country_id`, `zone_id
 (108,	222,	3955,	3,	'0000-00-00 00:00:00',	'0000-00-00 00:00:00'),
 (109,	222,	3972,	3,	'0000-00-00 00:00:00',	'0000-00-00 00:00:00');
 
--- 2016-08-31 19:48:20
+-- 2016-09-01 13:12:13
