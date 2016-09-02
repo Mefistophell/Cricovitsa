@@ -49,7 +49,7 @@
         <div class="row marg25 marg990">
             <div class="col-md-3 col-sm-3 col-xs-6 padding10">
                 <div class="item5 text-center">
-                    <a href="/index.php?route=information/news" class="s4-textlink ownbtn2 btn">
+                    <a href="/index.php?route=news/ncategory&ncat=59" class="s4-textlink ownbtn2 btn">
                         View our news >
                     </a>
                 </div> 
