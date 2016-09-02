@@ -328,3 +328,6 @@ div#tab-option .table > thead > tr > th, .table > tbody > tr > th, .table > tfoo
     float: left;
     padding-right: 16px;
 }
+#comment-form {
+    overflow: auto;
+}
