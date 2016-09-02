@@ -1555,7 +1555,7 @@ CREATE TABLE `oc_currency` (
 
 INSERT INTO `oc_currency` (`currency_id`, `title`, `code`, `symbol_left`, `symbol_right`, `decimal_place`, `value`, `status`, `date_modified`) VALUES
 (1,	'Pound Sterling',	'GBP',	'£',	'',	'2',	0.75370002,	1,	'2016-09-01 16:30:26'),
-(2,	'US Dollar',	'USD',	'$',	'',	'2',	1.00000000,	1,	'2016-09-01 16:30:26'),
+(2,	'US Dollar',	'USD',	'$',	'',	'2',	1.00000000,	1,	'2016-09-02 11:03:45'),
 (3,	'Euro',	'EUR',	'',	'€',	'2',	0.89770001,	1,	'2016-09-01 16:30:26');
 
 DROP TABLE IF EXISTS `oc_customer`;
@@ -1850,7 +1850,8 @@ INSERT INTO `oc_extension` (`extension_id`, `type`, `code`) VALUES
 (25,	'module',	'latest_author'),
 (26,	'module',	'recently_sold'),
 (29,	'module',	'html'),
-(30,	'module',	'news');
+(30,	'module',	'news'),
+(31,	'module',	'ncategory');
 
 DROP TABLE IF EXISTS `oc_filter`;
 CREATE TABLE `oc_filter` (
@@ -2156,6 +2157,8 @@ CREATE TABLE `oc_modification` (
   PRIMARY KEY (`modification_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+INSERT INTO `oc_modification` (`modification_id`, `name`, `code`, `author`, `version`, `link`, `xml`, `status`, `date_added`) VALUES
+(1,	'Shopencart News/Blog integration OCmod',	'shopencart-newsblog',	'Flo from shopencart.com',	'1.1',	'http://shopencart.com',	'<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<modification>\r\n	<name>Shopencart News/Blog integration OCmod</name>\r\n	<version>1.1</version>\r\n	<link>http://shopencart.com</link>\r\n	<author>Flo from shopencart.com</author>\r\n	<code>shopencart-newsblog</code>\r\n	<file path=\"admin/controller/common/menu.php\">\r\n		<operation>\r\n			<search><![CDATA[$data[\'openbay_link_amazonus_links\'] = $this->url->link(\'openbay/amazonus/itemlinks\', \'token=\' . $this->session->data[\'token\'], \'SSL\');]]></search>\r\n			<add position=\"after\"><![CDATA[\r\n			\r\n			$this->language->load(\'common/newspanel\');\r\n			\r\n			$data[\'nmod\'] = $this->url->link(\'module/news\', \'token=\' . $this->session->data[\'token\'], \'SSL\');\r\n		\r\n			$data[\'ncmod\'] = $this->url->link(\'module/ncategory\', \'token=\' . $this->session->data[\'token\'], \'SSL\');\r\n		\r\n			$data[\'npages\'] = $this->url->link(\'catalog/news\', \'token=\' . $this->session->data[\'token\'], \'SSL\');\r\n		\r\n			$data[\'ncategory\'] = $this->url->link(\'catalog/ncategory\', \'token=\' . $this->session->data[\'token\'], \'SSL\');\r\n		\r\n			$data[\'tocomments\'] = $this->url->link(\'catalog/ncomments\', \'token=\' . $this->session->data[\'token\'], \'SSL\');	\r\n		\r\n			$data[\'nauthor\'] = $this->url->link(\'catalog/nauthor\', \'token=\' . $this->session->data[\'token\'], \'SSL\');\r\n		\r\n			$data[\'text_commod\'] = $this->language->get(\'text_commod\');\r\n		\r\n			$data[\'entry_npages\'] = $this->language->get(\'entry_npages\');\r\n		\r\n			$data[\'entry_nmod\'] = $this->language->get(\'entry_nmod\');\r\n		\r\n			$data[\'entry_ncmod\'] = $this->language->get(\'entry_ncmod\');\r\n		\r\n			$data[\'entry_ncategory\'] = $this->language->get(\'entry_ncategory\');\r\n		\r\n			$data[\'text_nauthor\'] = $this->language->get(\'text_nauthor\');\r\n		\r\n		]]></add>\r\n		</operation>\r\n	</file>\r\n	<file path=\"admin/view/template/common/menu.tpl\">\r\n		<operation>\r\n			<search><![CDATA[<li id=\"reports\"><a class=\"parent\"><i class=\"fa fa-bar-chart-o fa-fw\"></i> <span><?php echo $text_reports; ?></span></a>]]></search>\r\n			<add position=\"before\"><![CDATA[  \r\n			<li id=\"blog\"><a class=\"parent\"><i class=\"fa fa-book fa-fw\"></i> <span>News/Blog</span></a>\r\n				<ul>\r\n					<li><a href=\"<?php echo $npages; ?>\"><?php echo $entry_npages; ?></a></li>\r\n					<li><a href=\"<?php echo $ncategory; ?>\"><?php echo $entry_ncategory; ?></a></li>\r\n					<li><a href=\"<?php echo $tocomments; ?>\"><?php echo $text_commod; ?></a></li>\r\n					<li><a href=\"<?php echo $nauthor; ?>\"><?php echo $text_nauthor; ?></a></li>\r\n					<li><a href=\"<?php echo $nmod; ?>\"><?php echo $entry_nmod; ?></a></li>\r\n					<li><a href=\"<?php echo $ncmod; ?>\"><?php echo $entry_ncmod; ?></a></li>\r\n				</ul>\r\n			</li>\r\n			]]></add>\r\n		</operation>\r\n	</file>\r\n	<file path=\"admin/controller/common/dashboard.php\">\r\n		<operation>\r\n			<search><![CDATA[$data[\'footer\'] = $this->load->controller(\'common/footer\');]]></search>\r\n			<add position=\"after\"><![CDATA[$data[\'newspanel\'] = $this->load->controller(\'common/newspanel\');]]></add>\r\n		</operation>\r\n	</file>\r\n	<file path=\"admin/view/template/common/dashboard.tpl\">\r\n		<operation>\r\n			<search><![CDATA[<?php if ($error_install) { ?>]]></search>\r\n			<add position=\"before\"><![CDATA[  <?php echo $newspanel; ?>\r\n							<br />]]></add>\r\n		</operation>\r\n	</file>\r\n	<file path=\"catalog/controller/common/column_left.php\">\r\n		<operation>\r\n			<search><![CDATA[$this->load->model(\'catalog/information\');]]></search>\r\n			<add position=\"after\"><![CDATA[$this->load->model(\'catalog/news\');\r\n			$this->load->model(\'catalog/ncategory\');\r\n			]]></add>\r\n		</operation>\r\n		<operation>\r\n			<search><![CDATA[if ($route == \'product/category\' && isset($this->request->get[\'path\'])) {]]></search>\r\n			<add position=\"before\"><![CDATA[\r\n			if ($route == \'news/article\' && isset($this->request->get[\'news_id\'])) {\r\n				$layout_id = $this->model_catalog_news->getNewsLayoutId($this->request->get[\'news_id\']);\r\n			}\r\n			if ($route == \'news/ncategory\' && isset($this->request->get[\'ncat\'])) {\r\n				$ncat = explode(\'_\', (string)$this->request->get[\'ncat\']);\r\n				\r\n				$layout_id = $this->model_catalog_ncategory->getncategoryLayoutId(end($ncat));			\r\n			}\r\n		]]></add>\r\n		</operation>\r\n	</file>\r\n	<file path=\"catalog/controller/common/column_right.php\">\r\n		<operation>\r\n			<search><![CDATA[$this->load->model(\'catalog/information\');]]></search>\r\n			<add position=\"after\"><![CDATA[$this->load->model(\'catalog/news\');\r\n			$this->load->model(\'catalog/ncategory\');\r\n			]]></add>\r\n		</operation>\r\n		<operation>\r\n			<search><![CDATA[if ($route == \'product/category\' && isset($this->request->get[\'path\'])) {]]></search>\r\n			<add position=\"before\"><![CDATA[\r\n			if ($route == \'news/article\' && isset($this->request->get[\'news_id\'])) {\r\n				$layout_id = $this->model_catalog_news->getNewsLayoutId($this->request->get[\'news_id\']);\r\n			}\r\n			if ($route == \'news/ncategory\' && isset($this->request->get[\'ncat\'])) {\r\n				$ncat = explode(\'_\', (string)$this->request->get[\'ncat\']);\r\n				\r\n				$layout_id = $this->model_catalog_ncategory->getncategoryLayoutId(end($ncat));			\r\n			}\r\n		]]></add>\r\n		</operation>\r\n	</file>\r\n	<file path=\"catalog/controller/common/content_top.php\">\r\n		<operation>\r\n			<search><![CDATA[$this->load->model(\'catalog/information\');]]></search>\r\n			<add position=\"after\"><![CDATA[$this->load->model(\'catalog/news\');\r\n			$this->load->model(\'catalog/ncategory\');\r\n			]]></add>\r\n		</operation>\r\n		<operation>\r\n			<search><![CDATA[if ($route == \'product/category\' && isset($this->request->get[\'path\'])) {]]></search>\r\n			<add position=\"before\"><![CDATA[\r\n			if ($route == \'news/article\' && isset($this->request->get[\'news_id\'])) {\r\n				$layout_id = $this->model_catalog_news->getNewsLayoutId($this->request->get[\'news_id\']);\r\n			}\r\n			if ($route == \'news/ncategory\' && isset($this->request->get[\'ncat\'])) {\r\n				$ncat = explode(\'_\', (string)$this->request->get[\'ncat\']);\r\n				\r\n				$layout_id = $this->model_catalog_ncategory->getncategoryLayoutId(end($ncat));			\r\n			}\r\n		]]></add>\r\n		</operation>\r\n	</file>\r\n	<file path=\"catalog/controller/common/content_bottom.php\">\r\n		<operation>\r\n			<search><![CDATA[$this->load->model(\'catalog/information\');]]></search>\r\n			<add position=\"after\"><![CDATA[$this->load->model(\'catalog/news\');\r\n			$this->load->model(\'catalog/ncategory\');\r\n			]]></add>\r\n		</operation>\r\n		<operation>\r\n			<search><![CDATA[if ($route == \'product/category\' && isset($this->request->get[\'path\'])) {]]></search>\r\n			<add position=\"before\"><![CDATA[\r\n			if ($route == \'news/article\' && isset($this->request->get[\'news_id\'])) {\r\n				$layout_id = $this->model_catalog_news->getNewsLayoutId($this->request->get[\'news_id\']);\r\n			}\r\n			if ($route == \'news/ncategory\' && isset($this->request->get[\'ncat\'])) {\r\n				$ncat = explode(\'_\', (string)$this->request->get[\'ncat\']);\r\n				\r\n				$layout_id = $this->model_catalog_ncategory->getncategoryLayoutId(end($ncat));			\r\n			}\r\n		]]></add>\r\n		</operation>\r\n	</file>\r\n	<file path=\"catalog/controller/common/seo_url.php\">\r\n		<operation>\r\n			<search><![CDATA[if (isset($this->request->get[\'route\'])) {]]></search>\r\n			<add position=\"before\"><![CDATA[\r\n        if ($this->request->get[\'route\'] != \'product/product\' && $this->request->get[\'route\'] != \'product/category\' && $this->request->get[\'route\'] != \'product/manufacturer/info\' && $this->request->get[\'route\'] != \'information/information\') {\r\n			$blog_headlines = $this->config->get(\'ncategory_bnews_headlines_url\') ? $this->config->get(\'ncategory_bnews_headlines_url\') : \'blog-headlines\';\r\n			\r\n			$blogparts = explode(\'/\', $this->request->get[\'_route_\']);\r\n			\r\n			if (utf8_strlen(end($blogparts)) == 0) {\r\n				array_pop($blogparts);\r\n			}\r\n\r\n			\r\n			foreach ($blogparts as $part) {\r\n					/* default article seo urls */\r\n					if (strpos($part, \'blogcat\') === 0) {\r\n						$ncatid = (int)str_replace(\"blogcat\", \"\", $part);\r\n						if (!isset($this->request->get[\'ncat\'])) {\r\n							$this->request->get[\'ncat\'] = $ncatid;\r\n						} else {\r\n							$this->request->get[\'ncat\'] .= \'_\' . $ncatid;\r\n						}\r\n					}\r\n					if (strpos($part, \'blogart\') === 0) {\r\n						$this->request->get[\'news_id\'] = (int)str_replace(\"blogart\", \"\", $part);\r\n					}\r\n					if (strpos($part, \'blogauthor\') === 0) {\r\n						$this->request->get[\'author\'] = (int)str_replace(\"blogauthor\", \"\", $part);\r\n					}\r\n					/* end of default article urls */\r\n				$query = $this->db->query(\"SELECT * FROM \" . DB_PREFIX . \"url_alias WHERE keyword = \'\" . $this->db->escape($part) . \"\'\");\r\n				\r\n				if ($part == $blog_headlines) {\r\n					$query->num_rows = true;\r\n					$query->row[\'query\'] = \"-=-\";\r\n				}\r\n\r\n				if ($query->num_rows) {\r\n					$url = explode(\'=\', $query->row[\'query\']);\r\n					/* custom article urls */\r\n					if ($url[0] == \'news_id\') {\r\n						$this->request->get[\'news_id\'] = $url[1];\r\n					}\r\n					if ($url[0] == \'nauthor_id\') {\r\n						$this->request->get[\'author\'] = $url[1];\r\n					}\r\n					if ($url[0] == \'ncategory_id\') {\r\n						if (!isset($this->request->get[\'ncat\'])) {\r\n							$this->request->get[\'ncat\'] = $url[1];\r\n						} else {\r\n							$this->request->get[\'ncat\'] .= \'_\' . $url[1];\r\n						}\r\n					}\r\n					/* end of custom article urls */\r\n				}\r\n			}\r\n			if (!isset($this->request->get[\'route\']) || (isset($this->request->get[\'route\']) && $this->request->get[\'route\'] == \"error/not_found\")) {\r\n					\r\n				if (isset($this->request->get[\'news_id\'])) {\r\n					$this->request->get[\'route\'] = \'news/article\';\r\n				} elseif (isset($this->request->get[\'ncat\']) || isset($this->request->get[\'author\']) || $this->request->get[\'_route_\'] ==  $blog_headlines) {\r\n					$this->request->get[\'route\'] = \'news/ncategory\';\r\n				}\r\n			}\r\n        }\r\n			]]></add>\r\n		</operation>\r\n		<operation>\r\n			<search><![CDATA[} elseif ($key == \'path\') {]]></search>\r\n			<add position=\"replace\"><![CDATA[\r\n			} elseif ($data[\'route\'] == \'news/article\' && $key == \'news_id\') { \r\n				$query = $this->db->query(\"SELECT * FROM \" . DB_PREFIX . \"url_alias WHERE `query` = \'\" . $this->db->escape($key . \'=\' . (int)$value) . \"\'\");\r\n				if ($query->num_rows) {\r\n					$url .= \'/\' . $query->row[\'keyword\'];\r\n					unset($data[$key]);\r\n				} else {\r\n					$url .= \'/blogart\' . (int)$value;	\r\n					unset($data[$key]);\r\n				}\r\n			} elseif ($data[\'route\'] == \'news/ncategory\' && $key == \'author\') { \r\n				$realkey = \"nauthor_id\";\r\n				$query = $this->db->query(\"SELECT * FROM \" . DB_PREFIX . \"url_alias WHERE `query` = \'\" . $this->db->escape($realkey . \'=\' . (int)$value) . \"\'\");\r\n				if ($query->num_rows) {\r\n					$url .= \'/\' . $query->row[\'keyword\'];\r\n					unset($data[$key]);\r\n				} else {\r\n					$url .= \'/blogauthor\' . (int)$value;	\r\n					unset($data[$key]);\r\n				}\r\n			} elseif ($key == \'ncat\') {\r\n				$ncategories = explode(\'_\', $value);\r\n						\r\n				foreach ($ncategories as $ncategory) {\r\n					$query = $this->db->query(\"SELECT * FROM \" . DB_PREFIX . \"url_alias WHERE `query` = \'ncategory_id=\" . (int)$ncategory . \"\'\");\r\n					if ($query->num_rows) {\r\n						$url .= \'/\' . $query->row[\'keyword\'];\r\n					} else {\r\n						$url .= \'/blogcat\' . $ncategory;\r\n					}\r\n				}\r\n				unset($data[$key]);\r\n			} elseif ((isset($data[\'route\']) && $data[\'route\'] == \'news/ncategory\' && $key != \'ncat\' && $key != \'author\' && $key != \'page\') || (isset($data[\'route\']) && $data[\'route\'] == \'news/article\' && $key != \'page\')) { \r\n				$blog_headlines = $this->config->get(\'ncategory_bnews_headlines_url\') ? $this->config->get(\'ncategory_bnews_headlines_url\') : \'blog-headlines\';\r\n				$url .=  \'/\'.$blog_headlines;\r\n			} elseif ($key == \'path\') {]]></add>\r\n		</operation>\r\n	</file>\r\n	<file path=\"catalog/controller/common/footer.php\">\r\n		<operation>\r\n			<search><![CDATA[$data[\'newsletter\'] = $this->url->link(\'account/newsletter\', \'\', \'SSL\');]]></search>\r\n			<add position=\"before\"><![CDATA[\r\n		$this->language->load(\'module/news\');\r\n		$data[\'blog_url\'] = $this->url->link(\'news/ncategory\');\r\n		$data[\'blog_name\'] = $this->language->get(\'text_blogpage\');\r\n		]]></add>\r\n		</operation>\r\n	</file>\r\n	<file path=\"catalog/view/theme/*/template/common/footer.tpl\">\r\n		<operation>\r\n			<search><![CDATA[<li><a href=\"<?php echo $special; ?>\"><?php echo $text_special; ?></a></li>]]></search>\r\n			<add position=\"after\"><![CDATA[\r\n			<li><a href=\"<?php echo $blog_url; ?>\"><?php echo $blog_name; ?></a></li>\r\n			]]></add>\r\n		</operation>\r\n	</file>\r\n	<file path=\"system/library/document.php\">\r\n		<operation>\r\n			<search><![CDATA[private $scripts = array();]]></search>\r\n			<add position=\"after\"><![CDATA[\r\n			private $extra_tags = array();\r\n			public function addExtraTag($property, $content = \'\', $name=\'\'){\r\n				$this->extra_tags[md5($property)] = array(\r\n					\'property\' => $property,\r\n					\'content\'  => $content,\r\n					\'name\'     => $name,\r\n				);\r\n			}\r\n			\r\n			public function getExtraTags(){\r\n				return $this->extra_tags;\r\n			}\r\n			]]></add>\r\n		</operation>\r\n	</file>\r\n	<file path=\"catalog/controller/common/header.php\">\r\n		<operation>\r\n			<search><![CDATA[$data[\'scripts\'] = $this->document->getScripts();]]></search>\r\n			<add position=\"after\"><![CDATA[$data[\'extra_tags\'] = $this->document->getExtraTags();]]></add>\r\n		</operation>\r\n	</file>\r\n	<file path=\"catalog/view/theme/*/template/common/header.tpl\">\r\n		<operation>\r\n			<search><![CDATA[<?php if ($description) { ?>]]></search>\r\n			<add position=\"before\"><![CDATA[<?php foreach($extra_tags as $extra_tag) {?>\r\n<meta <?php echo ($extra_tag[\'name\']) ? \'name=\"\' . $extra_tag[\'name\'] . \'\" \' : \'\'; ?><?php echo (!in_array($extra_tag[\'property\'], array(\"noprop\", \"noprop1\", \"noprop2\", \"noprop3\", \"noprop4\"))) ? \'property=\"\' . $extra_tag[\'property\'] . \'\" \' : \'\'; ?> content=\"<?php echo addslashes($extra_tag[\'content\']); ?>\" />\r\n<?php } ?>]]></add>\r\n		</operation>\r\n	</file>\r\n</modification>',	1,	'2016-09-02 11:02:00');
 
 DROP TABLE IF EXISTS `oc_module`;
 CREATE TABLE `oc_module` (
@@ -2180,33 +2183,209 @@ INSERT INTO `oc_module` (`module_id`, `name`, `code`, `setting`) VALUES
 (38,	'SCULPTURES',	'html',	'{\"name\":\"SCULPTURES\",\"module_description\":{\"1\":{\"title\":\"SCULPTURES FOR SALE\",\"description\":\"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident. Sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.\"}},\"status\":\"1\"}'),
 (39,	'Tranding Now',	'featured',	'{\"name\":\"Tranding Now\",\"product_name\":\"\",\"product\":[\"52\",\"60\",\"56\",\"58\"],\"limit\":\"8\",\"width\":\"200\",\"height\":\"200\",\"status\":\"1\"}');
 
+DROP TABLE IF EXISTS `oc_nauthor`;
+CREATE TABLE `oc_nauthor` (
+  `nauthor_id` int(11) NOT NULL AUTO_INCREMENT,
+  `adminid` varchar(64) COLLATE utf8_bin NOT NULL,
+  `name` varchar(64) COLLATE utf8_bin NOT NULL,
+  `image` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  PRIMARY KEY (`nauthor_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+DROP TABLE IF EXISTS `oc_nauthor_description`;
+CREATE TABLE `oc_nauthor_description` (
+  `nauthor_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL,
+  `ctitle` varchar(255) COLLATE utf8_bin NOT NULL,
+  `description` text COLLATE utf8_bin NOT NULL,
+  `meta_description` varchar(255) COLLATE utf8_bin NOT NULL,
+  `meta_keyword` varchar(255) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`nauthor_id`,`language_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+DROP TABLE IF EXISTS `oc_ncategory`;
+CREATE TABLE `oc_ncategory` (
+  `ncategory_id` int(11) NOT NULL AUTO_INCREMENT,
+  `image` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `parent_id` int(11) NOT NULL DEFAULT '0',
+  `top` tinyint(1) NOT NULL,
+  `column` int(3) NOT NULL,
+  `sort_order` int(3) NOT NULL DEFAULT '0',
+  `status` tinyint(1) NOT NULL,
+  `date_added` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `date_modified` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`ncategory_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+INSERT INTO `oc_ncategory` (`ncategory_id`, `image`, `parent_id`, `top`, `column`, `sort_order`, `status`, `date_added`, `date_modified`) VALUES
+(59,	'',	0,	0,	10,	0,	1,	'2016-09-02 11:08:21',	'2016-09-02 11:08:21'),
+(60,	'',	0,	0,	10,	0,	1,	'2016-09-02 11:08:36',	'2016-09-02 11:08:36');
+
+DROP TABLE IF EXISTS `oc_ncategory_description`;
+CREATE TABLE `oc_ncategory_description` (
+  `ncategory_id` int(11) NOT NULL,
+  `language_id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `description` text COLLATE utf8_bin NOT NULL,
+  `meta_description` varchar(255) COLLATE utf8_bin NOT NULL,
+  `meta_keyword` varchar(255) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`ncategory_id`,`language_id`),
+  KEY `name` (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+INSERT INTO `oc_ncategory_description` (`ncategory_id`, `language_id`, `name`, `description`, `meta_description`, `meta_keyword`) VALUES
+(59,	1,	'News',	'&lt;p&gt;News&lt;br&gt;&lt;/p&gt;',	'News',	'News'),
+(60,	1,	'Blog',	'&lt;p&gt;Blog&lt;br&gt;&lt;/p&gt;',	'Blog',	'Blog');
+
+DROP TABLE IF EXISTS `oc_ncategory_to_layout`;
+CREATE TABLE `oc_ncategory_to_layout` (
+  `ncategory_id` int(11) NOT NULL,
+  `store_id` int(11) NOT NULL,
+  `layout_id` int(11) NOT NULL,
+  PRIMARY KEY (`ncategory_id`,`store_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+INSERT INTO `oc_ncategory_to_layout` (`ncategory_id`, `store_id`, `layout_id`) VALUES
+(59,	0,	0),
+(60,	0,	0);
+
+DROP TABLE IF EXISTS `oc_ncategory_to_store`;
+CREATE TABLE `oc_ncategory_to_store` (
+  `ncategory_id` int(11) NOT NULL,
+  `store_id` int(11) NOT NULL,
+  PRIMARY KEY (`ncategory_id`,`store_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+INSERT INTO `oc_ncategory_to_store` (`ncategory_id`, `store_id`) VALUES
+(59,	0),
+(60,	0);
+
+DROP TABLE IF EXISTS `oc_ncomments`;
+CREATE TABLE `oc_ncomments` (
+  `ncomment_id` int(11) NOT NULL AUTO_INCREMENT,
+  `news_id` int(11) NOT NULL,
+  `language_id` int(2) NOT NULL,
+  `reply_id` int(11) NOT NULL DEFAULT '0',
+  `author` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `text` text COLLATE utf8_bin NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `date_added` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `date_modified` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`ncomment_id`),
+  KEY `news_id` (`news_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
 DROP TABLE IF EXISTS `oc_news`;
 CREATE TABLE `oc_news` (
   `news_id` int(11) NOT NULL AUTO_INCREMENT,
-  `image` varchar(255) NOT NULL,
-  `date_added` datetime NOT NULL,
-  `status` tinyint(1) NOT NULL,
+  `nauthor_id` int(11) NOT NULL,
+  `status` int(1) NOT NULL DEFAULT '0',
+  `image` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `acom` int(1) NOT NULL DEFAULT '0',
+  `date_added` datetime DEFAULT NULL,
+  `date_updated` datetime DEFAULT NULL,
+  `image2` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  `sort_order` int(11) DEFAULT NULL,
+  `gal_thumb_w` int(5) NOT NULL,
+  `gal_thumb_h` int(5) NOT NULL,
+  `gal_popup_w` int(5) NOT NULL,
+  `gal_popup_h` int(5) NOT NULL,
+  `gal_slider_h` int(4) NOT NULL,
+  `gal_slider_t` int(1) NOT NULL,
+  `date_pub` datetime DEFAULT NULL,
+  `gal_slider_w` int(4) NOT NULL,
   PRIMARY KEY (`news_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-INSERT INTO `oc_news` (`news_id`, `image`, `date_added`, `status`) VALUES
-(1,	'catalog/2.jpg',	'2016-08-31 22:24:22',	1),
-(2,	'catalog/4.jpg',	'2016-08-31 22:42:03',	1);
+INSERT INTO `oc_news` (`news_id`, `nauthor_id`, `status`, `image`, `acom`, `date_added`, `date_updated`, `image2`, `sort_order`, `gal_thumb_w`, `gal_thumb_h`, `gal_popup_w`, `gal_popup_h`, `gal_slider_h`, `gal_slider_t`, `date_pub`, `gal_slider_w`) VALUES
+(8,	0,	1,	'catalog/2.jpg',	1,	'2016-09-02 11:08:43',	'2016-09-02 11:08:43',	'',	1,	150,	150,	700,	700,	400,	1,	'2016-09-01 11:08:43',	980);
 
 DROP TABLE IF EXISTS `oc_news_description`;
 CREATE TABLE `oc_news_description` (
-  `news_description_id` int(11) NOT NULL AUTO_INCREMENT,
-  `news_id` int(11) NOT NULL,
-  `language_id` int(11) NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `description` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `short_description` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`news_description_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `news_id` int(11) NOT NULL DEFAULT '0',
+  `language_id` int(11) NOT NULL DEFAULT '0',
+  `title` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `ctitle` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `description` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `description2` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `meta_desc` varchar(255) COLLATE utf8_bin NOT NULL,
+  `meta_key` varchar(255) COLLATE utf8_bin NOT NULL,
+  `ntags` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `cfield1` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `cfield2` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `cfield3` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `cfield4` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  PRIMARY KEY (`news_id`,`language_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-INSERT INTO `oc_news_description` (`news_description_id`, `news_id`, `language_id`, `title`, `description`, `short_description`) VALUES
-(4,	2,	1,	'The second news',	'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident. Sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae.',	'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. '),
-(6,	1,	1,	'The first news',	'Substance is a JavaScript library for web-based content editing. It gives you all of the tools you need for creating custom text editors and web-based publishing systems.',	'Substance is a JavaScript library for web-based content editing. It gives you all of the tools you need for creating custom text editors and web-based publishing systems.');
+INSERT INTO `oc_news_description` (`news_id`, `language_id`, `title`, `ctitle`, `description`, `description2`, `meta_desc`, `meta_key`, `ntags`, `cfield1`, `cfield2`, `cfield3`, `cfield4`) VALUES
+(8,	1,	'The one news',	'',	'&lt;p&gt;The one news&lt;br&gt;&lt;/p&gt;',	'',	'',	'',	'',	'',	'',	'',	'');
+
+DROP TABLE IF EXISTS `oc_news_gallery`;
+CREATE TABLE `oc_news_gallery` (
+  `news_image_id` int(11) NOT NULL AUTO_INCREMENT,
+  `news_id` int(11) NOT NULL,
+  `image` varchar(512) DEFAULT NULL,
+  `text` text NOT NULL,
+  `sort_order` int(3) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`news_image_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+DROP TABLE IF EXISTS `oc_news_related`;
+CREATE TABLE `oc_news_related` (
+  `news_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  PRIMARY KEY (`news_id`,`product_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+DROP TABLE IF EXISTS `oc_news_to_layout`;
+CREATE TABLE `oc_news_to_layout` (
+  `news_id` int(11) NOT NULL,
+  `store_id` int(11) NOT NULL,
+  `layout_id` int(11) NOT NULL,
+  PRIMARY KEY (`news_id`,`store_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+INSERT INTO `oc_news_to_layout` (`news_id`, `store_id`, `layout_id`) VALUES
+(8,	0,	0);
+
+DROP TABLE IF EXISTS `oc_news_to_ncategory`;
+CREATE TABLE `oc_news_to_ncategory` (
+  `news_id` int(11) NOT NULL,
+  `ncategory_id` int(11) NOT NULL,
+  PRIMARY KEY (`news_id`,`ncategory_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+INSERT INTO `oc_news_to_ncategory` (`news_id`, `ncategory_id`) VALUES
+(8,	60);
+
+DROP TABLE IF EXISTS `oc_news_to_store`;
+CREATE TABLE `oc_news_to_store` (
+  `news_id` int(11) NOT NULL,
+  `store_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`news_id`,`store_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+INSERT INTO `oc_news_to_store` (`news_id`, `store_id`) VALUES
+(8,	0);
+
+DROP TABLE IF EXISTS `oc_news_video`;
+CREATE TABLE `oc_news_video` (
+  `news_video_id` int(11) NOT NULL AUTO_INCREMENT,
+  `news_id` int(11) NOT NULL,
+  `text` text COLLATE utf8_bin NOT NULL,
+  `video` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `width` int(11) NOT NULL,
+  `height` int(11) NOT NULL,
+  `sort_order` int(3) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`news_video_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
 
 DROP TABLE IF EXISTS `oc_option`;
 CREATE TABLE `oc_option` (
@@ -2584,7 +2763,7 @@ INSERT INTO `oc_product` (`product_id`, `seller_id`, `model`, `sku`, `upc`, `ean
 (59,	0,	'Picture Style 2',	'',	'',	'',	'',	'',	'',	'',	100,	7,	'catalog/demo/6q4aQjrVoY8.jpg',	8,	1,	100.0000,	0,	0,	'2016-07-21',	0.00000000,	1,	0.00000000,	0.00000000,	0.00000000,	1,	1,	1,	1,	1,	16,	'2016-08-23 12:05:03',	'0000-00-00 00:00:00',	'2016-08-23 12:06:48'),
 (60,	0,	'Picture Style ',	'',	'',	'',	'',	'',	'',	'',	100,	6,	'catalog/demo/6q4aQjrVoY8.jpg',	0,	1,	456.0000,	0,	0,	'2016-05-05',	0.00000000,	1,	0.00000000,	0.00000000,	0.00000000,	1,	1,	1,	1,	1,	12,	'2016-08-23 12:09:31',	'0000-00-00 00:00:00',	'2016-08-25 11:07:48'),
 (52,	0,	'Picture Style ',	'',	'',	'',	'',	'',	'',	'',	100,	7,	'catalog/demo/6q4aQjrVoY8.jpg',	0,	1,	456.0000,	0,	0,	'2016-05-05',	0.00000000,	1,	0.00000000,	0.00000000,	0.00000000,	1,	1,	1,	1,	1,	39,	'2016-05-05 13:08:04',	'2016-05-27 00:00:00',	'2016-08-29 20:44:11'),
-(56,	1,	'ART-56',	'',	'',	'',	'',	'',	'',	'',	1,	6,	'catalog/1/KVNM3syVleQ.jpg',	0,	1,	100.0000,	0,	0,	'2016-07-21',	0.00000000,	1,	0.00000000,	0.00000000,	0.00000000,	1,	1,	1,	1,	1,	694,	'2016-07-21 21:12:50',	'2016-07-21 00:00:00',	'2016-08-31 22:07:12');
+(56,	1,	'ART-56',	'',	'',	'',	'',	'',	'',	'',	1,	6,	'catalog/1/KVNM3syVleQ.jpg',	0,	1,	100.0000,	0,	0,	'2016-07-21',	0.00000000,	1,	0.00000000,	0.00000000,	0.00000000,	1,	1,	1,	1,	1,	695,	'2016-07-21 21:12:50',	'2016-07-21 00:00:00',	'2016-08-31 22:07:12');
 
 DROP TABLE IF EXISTS `oc_product_attribute`;
 CREATE TABLE `oc_product_attribute` (
@@ -3373,7 +3552,28 @@ INSERT INTO `oc_setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `ser
 (1808,	0,	'config',	'config_file_mime_allowed',	'text/plain\r\nimage/png\r\nimage/jpeg\r\nimage/gif\r\nimage/bmp\r\nimage/tiff\r\nimage/svg+xml\r\napplication/zip\r\n&quot;application/zip&quot;\r\napplication/x-zip\r\n&quot;application/x-zip&quot;\r\napplication/x-zip-compressed\r\n&quot;application/x-zip-compressed&quot;\r\napplication/rar\r\n&quot;application/rar&quot;\r\napplication/x-rar\r\n&quot;application/x-rar&quot;\r\napplication/x-rar-compressed\r\n&quot;application/x-rar-compressed&quot;\r\napplication/octet-stream\r\n&quot;application/octet-stream&quot;\r\naudio/mpeg\r\nvideo/quicktime\r\napplication/pdf',	0),
 (1809,	0,	'config',	'config_error_display',	'1',	0),
 (1810,	0,	'config',	'config_error_log',	'1',	0),
-(1811,	0,	'config',	'config_error_filename',	'error.log',	0);
+(1811,	0,	'config',	'config_error_filename',	'error.log',	0),
+(1812,	0,	'ncategory',	'ncategory_status',	'1',	0),
+(1813,	0,	'ncategory',	'ncategory_bnews_order',	'0',	0),
+(1814,	0,	'ncategory',	'ncategory_bnews_display_style',	'0',	0),
+(1815,	0,	'ncategory',	'ncategory_bnews_tplpick',	'0',	0),
+(1816,	0,	'ncategory',	'ncategory_bnews_display_elements',	'[\"name\",\"image\",\"da\",\"du\",\"author\",\"category\",\"desc\",\"button\",\"com\",\"custom1\",\"custom2\",\"custom3\",\"custom4\"]',	1),
+(1817,	0,	'ncategory',	'ncategory_bnews_image_width',	'80',	0),
+(1818,	0,	'ncategory',	'ncategory_bnews_image_height',	'80',	0),
+(1819,	0,	'ncategory',	'ncategory_bnews_thumb_width',	'230',	0),
+(1820,	0,	'ncategory',	'ncategory_bnews_thumb_height',	'230',	0),
+(1821,	0,	'ncategory',	'ncategory_bnews_catalog_limit',	'14',	0),
+(1822,	0,	'ncategory',	'ncategory_bnews_admin_limit',	'20',	0),
+(1823,	0,	'ncategory',	'ncategory_bnews_headlines_url',	'blog-headlines',	0),
+(1824,	0,	'ncategory',	'ncategory_bnews_desc_length',	'600',	0),
+(1825,	0,	'ncategory',	'ncategory_bnews_disqus_status',	'0',	0),
+(1826,	0,	'ncategory',	'ncategory_bnews_disqus_sname',	'short_name',	0),
+(1827,	0,	'ncategory',	'ncategory_bnews_fbcom_status',	'0',	0),
+(1828,	0,	'ncategory',	'ncategory_bnews_fbcom_appid',	'',	0),
+(1829,	0,	'ncategory',	'ncategory_bnews_fbcom_posts',	'10',	0),
+(1830,	0,	'ncategory',	'ncategory_bnews_fbcom_theme',	'dark',	0),
+(1831,	0,	'ncategory',	'ncategory_bnews_facebook_tags',	'0',	0),
+(1832,	0,	'ncategory',	'ncategory_bnews_twitter_tags',	'0',	0);
 
 DROP TABLE IF EXISTS `oc_stock_status`;
 CREATE TABLE `oc_stock_status` (
@@ -3723,7 +3923,8 @@ INSERT INTO `oc_url_alias` (`url_alias_id`, `query`, `keyword`) VALUES
 (1455,	'category_id=293',	'plastic'),
 (1457,	'category_id=294',	'stainless_steel'),
 (1459,	'category_id=295',	'steel'),
-(1469,	'news_id=1',	'News');
+(1469,	'news_id=1',	'News'),
+(1478,	'news/headlines',	'blogspage');
 
 DROP TABLE IF EXISTS `oc_user`;
 CREATE TABLE `oc_user` (
@@ -3755,7 +3956,7 @@ CREATE TABLE `oc_user_group` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `oc_user_group` (`user_group_id`, `name`, `permission`) VALUES
-(1,	'Administrator',	'{\"access\":[\"analytics\\/google_analytics\",\"captcha\\/basic_captcha\",\"captcha\\/google_captcha\",\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/recurring\",\"catalog\\/review\",\"common\\/column_left\",\"common\\/filemanager\",\"common\\/menu\",\"common\\/profile\",\"common\\/stats\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/language\",\"design\\/layout\",\"design\\/theme\",\"event\\/theme\",\"extension\\/analytics\",\"extension\\/captcha\",\"extension\\/feed\",\"extension\\/fraud\",\"extension\\/installer\",\"extension\\/modification\",\"extension\\/module\",\"extension\\/news\",\"extension\\/openbay\",\"extension\\/payment\",\"extension\\/shipping\",\"extension\\/theme\",\"extension\\/total\",\"feed\\/google_base\",\"feed\\/google_sitemap\",\"feed\\/openbaypro\",\"fraud\\/fraudlabspro\",\"fraud\\/ip\",\"fraud\\/maxmind\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"marketing\\/affiliate\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"module\\/account\",\"module\\/affiliate\",\"module\\/amazon_login\",\"module\\/amazon_pay\",\"module\\/banner\",\"module\\/bestseller\",\"module\\/carousel\",\"module\\/category\",\"module\\/ebay_listing\",\"module\\/featured\",\"module\\/filter\",\"module\\/google_hangouts\",\"module\\/html\",\"module\\/information\",\"module\\/latest\",\"module\\/latest_author\",\"module\\/laybuy_layout\",\"module\\/news\",\"module\\/pp_button\",\"module\\/pp_login\",\"module\\/recently_sold\",\"module\\/sagepay_direct_cards\",\"module\\/sagepay_server_cards\",\"module\\/slideshow\",\"module\\/special\",\"module\\/store\",\"openbay\\/amazon\",\"openbay\\/amazon_listing\",\"openbay\\/amazon_product\",\"openbay\\/amazonus\",\"openbay\\/amazonus_listing\",\"openbay\\/amazonus_product\",\"openbay\\/ebay\",\"openbay\\/ebay_profile\",\"openbay\\/ebay_template\",\"openbay\\/etsy\",\"openbay\\/etsy_product\",\"openbay\\/etsy_shipping\",\"openbay\\/etsy_shop\",\"openbay\\/fba\",\"payment\\/amazon_login_pay\",\"payment\\/authorizenet_aim\",\"payment\\/authorizenet_sim\",\"payment\\/bank_transfer\",\"payment\\/bluepay_hosted\",\"payment\\/bluepay_redirect\",\"payment\\/brick\",\"payment\\/cardinity\",\"payment\\/cheque\",\"payment\\/cod\",\"payment\\/eway\",\"payment\\/firstdata\",\"payment\\/firstdata_remote\",\"payment\\/free_checkout\",\"payment\\/g2apay\",\"payment\\/globalpay\",\"payment\\/globalpay_remote\",\"payment\\/klarna_account\",\"payment\\/klarna_invoice\",\"payment\\/laybuy\",\"payment\\/liqpay\",\"payment\\/nochex\",\"payment\\/paymate\",\"payment\\/paymentwall\",\"payment\\/paypoint\",\"payment\\/payza\",\"payment\\/perpetual_payments\",\"payment\\/pp_express\",\"payment\\/pp_payflow\",\"payment\\/pp_payflow_iframe\",\"payment\\/pp_pro\",\"payment\\/pp_pro_iframe\",\"payment\\/pp_standard\",\"payment\\/realex\",\"payment\\/realex_remote\",\"payment\\/sagepay_direct\",\"payment\\/sagepay_server\",\"payment\\/sagepay_us\",\"payment\\/securetrading_pp\",\"payment\\/securetrading_ws\",\"payment\\/skrill\",\"payment\\/twocheckout\",\"payment\\/web_payment_software\",\"payment\\/worldpay\",\"report\\/affiliate\",\"report\\/affiliate_activity\",\"report\\/affiliate_login\",\"report\\/customer_activity\",\"report\\/customer_credit\",\"report\\/customer_login\",\"report\\/customer_online\",\"report\\/customer_order\",\"report\\/customer_reward\",\"report\\/marketing\",\"report\\/product_purchased\",\"report\\/product_viewed\",\"report\\/sale_coupon\",\"report\\/sale_order\",\"report\\/sale_return\",\"report\\/sale_shipping\",\"report\\/sale_tax\",\"sale\\/order\",\"sale\\/recurring\",\"sale\\/return\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"seller\\/seller\",\"setting\\/setting\",\"setting\\/store\",\"shipping\\/auspost\",\"shipping\\/citylink\",\"shipping\\/fedex\",\"shipping\\/flat\",\"shipping\\/free\",\"shipping\\/item\",\"shipping\\/parcelforce_48\",\"shipping\\/pickup\",\"shipping\\/royal_mail\",\"shipping\\/ups\",\"shipping\\/usps\",\"shipping\\/weight\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/sass\",\"startup\\/startup\",\"theme\\/theme_default\",\"tool\\/backup\",\"tool\\/error_log\",\"tool\\/upload\",\"total\\/coupon\",\"total\\/credit\",\"total\\/handling\",\"total\\/klarna_fee\",\"total\\/low_order_fee\",\"total\\/reward\",\"total\\/shipping\",\"total\\/sub_total\",\"total\\/tax\",\"total\\/total\",\"total\\/voucher\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\",\"module\\/news\",\"extension\\/news\"],\"modify\":[\"analytics\\/google_analytics\",\"captcha\\/basic_captcha\",\"captcha\\/google_captcha\",\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/recurring\",\"catalog\\/review\",\"common\\/column_left\",\"common\\/filemanager\",\"common\\/menu\",\"common\\/profile\",\"common\\/stats\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/language\",\"design\\/layout\",\"design\\/theme\",\"event\\/theme\",\"extension\\/analytics\",\"extension\\/captcha\",\"extension\\/feed\",\"extension\\/fraud\",\"extension\\/installer\",\"extension\\/modification\",\"extension\\/module\",\"extension\\/news\",\"extension\\/openbay\",\"extension\\/payment\",\"extension\\/shipping\",\"extension\\/theme\",\"extension\\/total\",\"feed\\/google_base\",\"feed\\/google_sitemap\",\"feed\\/openbaypro\",\"fraud\\/fraudlabspro\",\"fraud\\/ip\",\"fraud\\/maxmind\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"marketing\\/affiliate\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"module\\/account\",\"module\\/affiliate\",\"module\\/amazon_login\",\"module\\/amazon_pay\",\"module\\/banner\",\"module\\/bestseller\",\"module\\/carousel\",\"module\\/category\",\"module\\/ebay_listing\",\"module\\/featured\",\"module\\/filter\",\"module\\/google_hangouts\",\"module\\/html\",\"module\\/information\",\"module\\/latest\",\"module\\/latest_author\",\"module\\/laybuy_layout\",\"module\\/news\",\"module\\/pp_button\",\"module\\/pp_login\",\"module\\/recently_sold\",\"module\\/sagepay_direct_cards\",\"module\\/sagepay_server_cards\",\"module\\/slideshow\",\"module\\/special\",\"module\\/store\",\"openbay\\/amazon\",\"openbay\\/amazon_listing\",\"openbay\\/amazon_product\",\"openbay\\/amazonus\",\"openbay\\/amazonus_listing\",\"openbay\\/amazonus_product\",\"openbay\\/ebay\",\"openbay\\/ebay_profile\",\"openbay\\/ebay_template\",\"openbay\\/etsy\",\"openbay\\/etsy_product\",\"openbay\\/etsy_shipping\",\"openbay\\/etsy_shop\",\"openbay\\/fba\",\"payment\\/amazon_login_pay\",\"payment\\/authorizenet_aim\",\"payment\\/authorizenet_sim\",\"payment\\/bank_transfer\",\"payment\\/bluepay_hosted\",\"payment\\/bluepay_redirect\",\"payment\\/brick\",\"payment\\/cardinity\",\"payment\\/cheque\",\"payment\\/cod\",\"payment\\/eway\",\"payment\\/firstdata\",\"payment\\/firstdata_remote\",\"payment\\/free_checkout\",\"payment\\/g2apay\",\"payment\\/globalpay\",\"payment\\/globalpay_remote\",\"payment\\/klarna_account\",\"payment\\/klarna_invoice\",\"payment\\/laybuy\",\"payment\\/liqpay\",\"payment\\/nochex\",\"payment\\/paymate\",\"payment\\/paymentwall\",\"payment\\/paypoint\",\"payment\\/payza\",\"payment\\/perpetual_payments\",\"payment\\/pp_express\",\"payment\\/pp_payflow\",\"payment\\/pp_payflow_iframe\",\"payment\\/pp_pro\",\"payment\\/pp_pro_iframe\",\"payment\\/pp_standard\",\"payment\\/realex\",\"payment\\/realex_remote\",\"payment\\/sagepay_direct\",\"payment\\/sagepay_server\",\"payment\\/sagepay_us\",\"payment\\/securetrading_pp\",\"payment\\/securetrading_ws\",\"payment\\/skrill\",\"payment\\/twocheckout\",\"payment\\/web_payment_software\",\"payment\\/worldpay\",\"report\\/affiliate\",\"report\\/affiliate_activity\",\"report\\/affiliate_login\",\"report\\/customer_activity\",\"report\\/customer_credit\",\"report\\/customer_login\",\"report\\/customer_online\",\"report\\/customer_order\",\"report\\/customer_reward\",\"report\\/marketing\",\"report\\/product_purchased\",\"report\\/product_viewed\",\"report\\/sale_coupon\",\"report\\/sale_order\",\"report\\/sale_return\",\"report\\/sale_shipping\",\"report\\/sale_tax\",\"sale\\/order\",\"sale\\/recurring\",\"sale\\/return\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"seller\\/seller\",\"setting\\/setting\",\"setting\\/store\",\"shipping\\/auspost\",\"shipping\\/citylink\",\"shipping\\/fedex\",\"shipping\\/flat\",\"shipping\\/free\",\"shipping\\/item\",\"shipping\\/parcelforce_48\",\"shipping\\/pickup\",\"shipping\\/royal_mail\",\"shipping\\/ups\",\"shipping\\/usps\",\"shipping\\/weight\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/sass\",\"startup\\/startup\",\"theme\\/theme_default\",\"tool\\/backup\",\"tool\\/error_log\",\"tool\\/upload\",\"total\\/coupon\",\"total\\/credit\",\"total\\/handling\",\"total\\/klarna_fee\",\"total\\/low_order_fee\",\"total\\/reward\",\"total\\/shipping\",\"total\\/sub_total\",\"total\\/tax\",\"total\\/total\",\"total\\/voucher\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\",\"module\\/news\",\"extension\\/news\"]}'),
+(1,	'Administrator',	'{\"access\":[\"analytics\\/google_analytics\",\"captcha\\/basic_captcha\",\"captcha\\/google_captcha\",\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/nauthor\",\"catalog\\/ncategory\",\"catalog\\/ncomments\",\"catalog\\/news\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/recurring\",\"catalog\\/review\",\"common\\/column_left\",\"common\\/filemanager\",\"common\\/menu\",\"common\\/newspanel\",\"common\\/profile\",\"common\\/stats\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/language\",\"design\\/layout\",\"design\\/theme\",\"event\\/theme\",\"extension\\/analytics\",\"extension\\/captcha\",\"extension\\/feed\",\"extension\\/fraud\",\"extension\\/installer\",\"extension\\/modification\",\"extension\\/module\",\"extension\\/openbay\",\"extension\\/payment\",\"extension\\/shipping\",\"extension\\/theme\",\"extension\\/total\",\"feed\\/articles_google_base\",\"feed\\/articles_google_sitemap\",\"feed\\/google_base\",\"feed\\/google_sitemap\",\"feed\\/openbaypro\",\"fraud\\/fraudlabspro\",\"fraud\\/ip\",\"fraud\\/maxmind\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"marketing\\/affiliate\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"module\\/account\",\"module\\/affiliate\",\"module\\/amazon_login\",\"module\\/amazon_pay\",\"module\\/banner\",\"module\\/bestseller\",\"module\\/carousel\",\"module\\/category\",\"module\\/ebay_listing\",\"module\\/featured\",\"module\\/filter\",\"module\\/google_hangouts\",\"module\\/html\",\"module\\/information\",\"module\\/latest\",\"module\\/latest_author\",\"module\\/laybuy_layout\",\"module\\/ncategory\",\"module\\/news\",\"module\\/pp_button\",\"module\\/pp_login\",\"module\\/recently_sold\",\"module\\/sagepay_direct_cards\",\"module\\/sagepay_server_cards\",\"module\\/slideshow\",\"module\\/special\",\"module\\/store\",\"openbay\\/amazon\",\"openbay\\/amazon_listing\",\"openbay\\/amazon_product\",\"openbay\\/amazonus\",\"openbay\\/amazonus_listing\",\"openbay\\/amazonus_product\",\"openbay\\/ebay\",\"openbay\\/ebay_profile\",\"openbay\\/ebay_template\",\"openbay\\/etsy\",\"openbay\\/etsy_product\",\"openbay\\/etsy_shipping\",\"openbay\\/etsy_shop\",\"openbay\\/fba\",\"payment\\/amazon_login_pay\",\"payment\\/authorizenet_aim\",\"payment\\/authorizenet_sim\",\"payment\\/bank_transfer\",\"payment\\/bluepay_hosted\",\"payment\\/bluepay_redirect\",\"payment\\/brick\",\"payment\\/cardinity\",\"payment\\/cheque\",\"payment\\/cod\",\"payment\\/eway\",\"payment\\/firstdata\",\"payment\\/firstdata_remote\",\"payment\\/free_checkout\",\"payment\\/g2apay\",\"payment\\/globalpay\",\"payment\\/globalpay_remote\",\"payment\\/klarna_account\",\"payment\\/klarna_invoice\",\"payment\\/laybuy\",\"payment\\/liqpay\",\"payment\\/nochex\",\"payment\\/paymate\",\"payment\\/paymentwall\",\"payment\\/paypoint\",\"payment\\/payza\",\"payment\\/perpetual_payments\",\"payment\\/pp_express\",\"payment\\/pp_payflow\",\"payment\\/pp_payflow_iframe\",\"payment\\/pp_pro\",\"payment\\/pp_pro_iframe\",\"payment\\/pp_standard\",\"payment\\/realex\",\"payment\\/realex_remote\",\"payment\\/sagepay_direct\",\"payment\\/sagepay_server\",\"payment\\/sagepay_us\",\"payment\\/securetrading_pp\",\"payment\\/securetrading_ws\",\"payment\\/skrill\",\"payment\\/twocheckout\",\"payment\\/web_payment_software\",\"payment\\/worldpay\",\"report\\/affiliate\",\"report\\/affiliate_activity\",\"report\\/affiliate_login\",\"report\\/customer_activity\",\"report\\/customer_credit\",\"report\\/customer_login\",\"report\\/customer_online\",\"report\\/customer_order\",\"report\\/customer_reward\",\"report\\/marketing\",\"report\\/product_purchased\",\"report\\/product_viewed\",\"report\\/sale_coupon\",\"report\\/sale_order\",\"report\\/sale_return\",\"report\\/sale_shipping\",\"report\\/sale_tax\",\"sale\\/order\",\"sale\\/recurring\",\"sale\\/return\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"seller\\/seller\",\"setting\\/setting\",\"setting\\/store\",\"shipping\\/auspost\",\"shipping\\/citylink\",\"shipping\\/fedex\",\"shipping\\/flat\",\"shipping\\/free\",\"shipping\\/item\",\"shipping\\/parcelforce_48\",\"shipping\\/pickup\",\"shipping\\/royal_mail\",\"shipping\\/ups\",\"shipping\\/usps\",\"shipping\\/weight\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/sass\",\"startup\\/startup\",\"theme\\/theme_default\",\"tool\\/backup\",\"tool\\/error_log\",\"tool\\/upload\",\"total\\/coupon\",\"total\\/credit\",\"total\\/handling\",\"total\\/klarna_fee\",\"total\\/low_order_fee\",\"total\\/reward\",\"total\\/shipping\",\"total\\/sub_total\",\"total\\/tax\",\"total\\/total\",\"total\\/voucher\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\",\"module\\/ncategory\"],\"modify\":[\"analytics\\/google_analytics\",\"captcha\\/basic_captcha\",\"captcha\\/google_captcha\",\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/nauthor\",\"catalog\\/ncategory\",\"catalog\\/ncomments\",\"catalog\\/news\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/recurring\",\"catalog\\/review\",\"common\\/column_left\",\"common\\/filemanager\",\"common\\/menu\",\"common\\/newspanel\",\"common\\/profile\",\"common\\/stats\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/language\",\"design\\/layout\",\"design\\/theme\",\"event\\/theme\",\"extension\\/analytics\",\"extension\\/captcha\",\"extension\\/feed\",\"extension\\/fraud\",\"extension\\/installer\",\"extension\\/modification\",\"extension\\/module\",\"extension\\/openbay\",\"extension\\/payment\",\"extension\\/shipping\",\"extension\\/theme\",\"extension\\/total\",\"feed\\/articles_google_base\",\"feed\\/articles_google_sitemap\",\"feed\\/google_base\",\"feed\\/google_sitemap\",\"feed\\/openbaypro\",\"fraud\\/fraudlabspro\",\"fraud\\/ip\",\"fraud\\/maxmind\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/length_class\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/return_action\",\"localisation\\/return_reason\",\"localisation\\/return_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/weight_class\",\"localisation\\/zone\",\"marketing\\/affiliate\",\"marketing\\/contact\",\"marketing\\/coupon\",\"marketing\\/marketing\",\"module\\/account\",\"module\\/affiliate\",\"module\\/amazon_login\",\"module\\/amazon_pay\",\"module\\/banner\",\"module\\/bestseller\",\"module\\/carousel\",\"module\\/category\",\"module\\/ebay_listing\",\"module\\/featured\",\"module\\/filter\",\"module\\/google_hangouts\",\"module\\/html\",\"module\\/information\",\"module\\/latest\",\"module\\/latest_author\",\"module\\/laybuy_layout\",\"module\\/ncategory\",\"module\\/news\",\"module\\/pp_button\",\"module\\/pp_login\",\"module\\/recently_sold\",\"module\\/sagepay_direct_cards\",\"module\\/sagepay_server_cards\",\"module\\/slideshow\",\"module\\/special\",\"module\\/store\",\"openbay\\/amazon\",\"openbay\\/amazon_listing\",\"openbay\\/amazon_product\",\"openbay\\/amazonus\",\"openbay\\/amazonus_listing\",\"openbay\\/amazonus_product\",\"openbay\\/ebay\",\"openbay\\/ebay_profile\",\"openbay\\/ebay_template\",\"openbay\\/etsy\",\"openbay\\/etsy_product\",\"openbay\\/etsy_shipping\",\"openbay\\/etsy_shop\",\"openbay\\/fba\",\"payment\\/amazon_login_pay\",\"payment\\/authorizenet_aim\",\"payment\\/authorizenet_sim\",\"payment\\/bank_transfer\",\"payment\\/bluepay_hosted\",\"payment\\/bluepay_redirect\",\"payment\\/brick\",\"payment\\/cardinity\",\"payment\\/cheque\",\"payment\\/cod\",\"payment\\/eway\",\"payment\\/firstdata\",\"payment\\/firstdata_remote\",\"payment\\/free_checkout\",\"payment\\/g2apay\",\"payment\\/globalpay\",\"payment\\/globalpay_remote\",\"payment\\/klarna_account\",\"payment\\/klarna_invoice\",\"payment\\/laybuy\",\"payment\\/liqpay\",\"payment\\/nochex\",\"payment\\/paymate\",\"payment\\/paymentwall\",\"payment\\/paypoint\",\"payment\\/payza\",\"payment\\/perpetual_payments\",\"payment\\/pp_express\",\"payment\\/pp_payflow\",\"payment\\/pp_payflow_iframe\",\"payment\\/pp_pro\",\"payment\\/pp_pro_iframe\",\"payment\\/pp_standard\",\"payment\\/realex\",\"payment\\/realex_remote\",\"payment\\/sagepay_direct\",\"payment\\/sagepay_server\",\"payment\\/sagepay_us\",\"payment\\/securetrading_pp\",\"payment\\/securetrading_ws\",\"payment\\/skrill\",\"payment\\/twocheckout\",\"payment\\/web_payment_software\",\"payment\\/worldpay\",\"report\\/affiliate\",\"report\\/affiliate_activity\",\"report\\/affiliate_login\",\"report\\/customer_activity\",\"report\\/customer_credit\",\"report\\/customer_login\",\"report\\/customer_online\",\"report\\/customer_order\",\"report\\/customer_reward\",\"report\\/marketing\",\"report\\/product_purchased\",\"report\\/product_viewed\",\"report\\/sale_coupon\",\"report\\/sale_order\",\"report\\/sale_return\",\"report\\/sale_shipping\",\"report\\/sale_tax\",\"sale\\/order\",\"sale\\/recurring\",\"sale\\/return\",\"sale\\/voucher\",\"sale\\/voucher_theme\",\"seller\\/seller\",\"setting\\/setting\",\"setting\\/store\",\"shipping\\/auspost\",\"shipping\\/citylink\",\"shipping\\/fedex\",\"shipping\\/flat\",\"shipping\\/free\",\"shipping\\/item\",\"shipping\\/parcelforce_48\",\"shipping\\/pickup\",\"shipping\\/royal_mail\",\"shipping\\/ups\",\"shipping\\/usps\",\"shipping\\/weight\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/sass\",\"startup\\/startup\",\"theme\\/theme_default\",\"tool\\/backup\",\"tool\\/error_log\",\"tool\\/upload\",\"total\\/coupon\",\"total\\/credit\",\"total\\/handling\",\"total\\/klarna_fee\",\"total\\/low_order_fee\",\"total\\/reward\",\"total\\/shipping\",\"total\\/sub_total\",\"total\\/tax\",\"total\\/total\",\"total\\/voucher\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\",\"module\\/ncategory\"]}'),
 (10,	'Demonstration',	'');
 
 DROP TABLE IF EXISTS `oc_voucher`;
@@ -8079,4 +8280,4 @@ INSERT INTO `oc_zone_to_geo_zone` (`zone_to_geo_zone_id`, `country_id`, `zone_id
 (108,	222,	3955,	3,	'0000-00-00 00:00:00',	'0000-00-00 00:00:00'),
 (109,	222,	3972,	3,	'0000-00-00 00:00:00',	'0000-00-00 00:00:00');
 
--- 2016-09-01 13:30:35
+-- 2016-09-02 08:12:48
