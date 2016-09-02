@@ -65,7 +65,7 @@
                 <div class="col-md-4 col-sm-4">
                     <h4><?php echo $text_extra; ?></h4>
                     <a href="<?php echo $artist; ?>"><?php echo $text_artist; ?></a>
-                    <a href="<?php echo $news; ?>"><?php echo $text_news; ?></a>
+                    <a href="/index.php?route=news/ncategory&ncat=60"><?php echo 'Blog'; ?></a>
                 </div>
             </div>
         </div>
