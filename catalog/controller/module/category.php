@@ -73,6 +73,17 @@ class ControllerModuleCategory extends Controller {
 			);  
         }
         
+        $level_price = $this->model_catalog_category->getCategoriesByLevel(4);
+        
+        foreach($level_price as $category) {
+            $data['categories_price'][] = array(
+				'category_id' => $category['category_id'],
+                'level' => $category['level'],
+				'name'        => $category['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
+				'href'        => $this->url->link('product/category', 'path=' . $category['category_id'])
+			);  
+        }
+        
 
 		return $this->load->view('module/category', $data);
 	}
