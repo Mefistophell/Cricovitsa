@@ -120,6 +120,8 @@
                                     <li><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a></li>
                                     <?php } ?>
                                     <?php $cc++;} ?>
+                                    <li><a href="/index.php?route=news/ncategory&ncat=59">NEWS</a></li>
+                                    <li><a href="#">ART CONSULTING</a></li>
                                 </ul>
                             </div>
                         </nav>
